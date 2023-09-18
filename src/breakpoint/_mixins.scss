@@ -21,13 +21,13 @@ $is-test: false !default;
 ///   );
 ///
 ///   .element {
-///     @include mixins.min('tab') {
+///     @include breakpoint.min('tab') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
 ///   .mediatype {
-///     @include mixins.min('tab', 'screen, print') {
+///     @include breakpoint.min('tab', 'screen, print') {
 ///       color: #f00;
 ///     }
 ///   }
@@ -86,13 +86,13 @@ $is-test: false !default;
 ///   );
 ///
 ///   .element {
-///     @include mixins.max('tab') {
+///     @include breakpoint.max('tab') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
 ///   .mediatype {
-///     @include mixins.max('tab', 'screen, print') {
+///     @include breakpoint.max('tab', 'screen, print') {
 ///       color: #f00;
 ///     }
 ///   }
@@ -151,13 +151,13 @@ $is-test: false !default;
 ///   );
 ///
 ///   .element {
-///     @include mixins.only('tab') {
+///     @include breakpoint.only('tab') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
 ///   .mediatype {
-///     @include mixins.only('tab', 'screen, print') {
+///     @include breakpoint.only('tab', 'screen, print') {
 ///       color: #f00;
 ///     }
 ///   }
@@ -232,13 +232,13 @@ $is-test: false !default;
 ///   );
 ///
 ///   .element {
-///     @include mixins.between('sm', 'lg') {
+///     @include breakpoint.between('sm', 'lg') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
 ///   .mediatype {
-///     @include mixins.between('sm', 'lg', 'screen, print') {
+///     @include breakpoint.between('sm', 'lg', 'screen, print') {
 ///       color: #f00;
 ///     }
 ///   }

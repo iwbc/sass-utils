@@ -34,13 +34,13 @@
 );
 
 .element {
-  @include mixins.min(&#39;tab&#39;) {
+  @include breakpoint.min(&#39;tab&#39;) {
     width: 50%;
   }
 }
 
 .mediatype {
-  @include mixins.min(&#39;tab&#39;, &#39;screen, print&#39;) {
+  @include breakpoint.min(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
 }</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (768px &lt;= width) {
@@ -85,13 +85,13 @@
 );
 
 .element {
-  @include mixins.max(&#39;tab&#39;) {
+  @include breakpoint.max(&#39;tab&#39;) {
     width: 50%;
   }
 }
 
 .mediatype {
-  @include mixins.max(&#39;tab&#39;, &#39;screen, print&#39;) {
+  @include breakpoint.max(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
 }</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (width &lt; 1200px) {
@@ -145,13 +145,13 @@
 );
 
 .element {
-  @include mixins.only(&#39;tab&#39;) {
+  @include breakpoint.only(&#39;tab&#39;) {
     width: 50%;
   }
 }
 
 .mediatype {
-  @include mixins.only(&#39;tab&#39;, &#39;screen, print&#39;) {
+  @include breakpoint.only(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
 }</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (768px &lt;= width &lt; 1200px) {
@@ -219,13 +219,13 @@
 );
 
 .element {
-  @include mixins.between(&#39;sm&#39;, &#39;lg&#39;) {
+  @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;) {
     width: 50%;
   }
 }
 
 .mediatype {
-  @include mixins.between(&#39;sm&#39;, &#39;lg&#39;, &#39;screen, print&#39;) {
+  @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
 }</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (480px &lt;= width &lt; 1200px) {
@@ -238,4 +238,4 @@
   .mediatype {
     color: #f00;
   }
-}</code></pre></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <span class="project-info__name">@iwbc/sass-utils</span><!-- Version --> <span class="project-info__version">- v0.0.1</span><!-- License --></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
+}</code></pre></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <span class="project-info__name">@iwbc/sass-utils</span><!-- Version --> <span class="project-info__version">- v0.0.1</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
