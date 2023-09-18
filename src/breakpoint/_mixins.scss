@@ -1,0 +1,303 @@
+////
+/// @group 01. ブレークポイント
+////
+
+@use 'sass:map';
+@use 'true';
+@use './functions';
+@use './variables';
+
+$is-test: false !default;
+
+///
+/// ブレークポイントの幅以上の場合にスタイルを適用する
+///
+/// @param {string} $key - ブレークポイント
+/// @param {string | null} $type [null] - メディアタイプ
+///
+/// @example scss - scss
+///   @use 'sass-utils/breakpoint' with (
+///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
+///   );
+///
+///   .element {
+///     @include mixins.min('tab') {
+///       width: 50%;
+///     }
+///   }
+///
+///   .mediatype {
+///     @include mixins.min('tab', 'screen, print') {
+///       color: #f00;
+///     }
+///   }
+///
+/// @example css - css
+///   @media screen and (768px <= width) {
+///     .element {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media screen, print and (768px <= width) {
+///     .mediatype {
+///       color: #f00;
+///     }
+///   }
+///
+@mixin min($key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key) {
+    $min: functions.get-value($key);
+
+    @if $min != 0 {
+      @if $type {
+        @media #{$type} and ($min <= width) {
+          @content;
+        }
+      } @else {
+        @media screen and ($min <= width) {
+          @content;
+        }
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @include true.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+      'min',
+      $is-test
+    );
+  }
+}
+
+///
+/// 次のブレークポイントの幅未満の場合にスタイルを適用する
+///
+/// @param {string} $key - ブレークポイント
+/// @param {string | null} $type [null] - メディアタイプ
+///
+/// @example scss - scss
+///   @use 'sass-utils/breakpoint' with (
+///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
+///   );
+///
+///   .element {
+///     @include mixins.max('tab') {
+///       width: 50%;
+///     }
+///   }
+///
+///   .mediatype {
+///     @include mixins.max('tab', 'screen, print') {
+///       color: #f00;
+///     }
+///   }
+///
+/// @example css - css
+///   @media screen and (width < 1200px) {
+///     .element {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media screen, print and (width < 1200px) {
+///     .mediatype {
+///       color: #f00;
+///     }
+///   }
+///
+@mixin max($key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key) {
+    $next: functions.get-next-value($key);
+
+    @if $next {
+      @if $type {
+        @media #{$type} and (width < $next) {
+          @content;
+        }
+      } @else {
+        @media screen and (width < $next) {
+          @content;
+        }
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @include true.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+      'max',
+      $is-test
+    );
+  }
+}
+
+///
+/// 指定したブレークポイントの幅以上、次のブレークポイントの幅未満の場合にスタイルを適用する
+///
+/// @param {string} $key - ブレークポイント
+/// @param {string | null} $type [null] - メディアタイプ
+///
+/// @example scss - scss
+///   @use 'sass-utils/breakpoint' with (
+///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
+///   );
+///
+///   .element {
+///     @include mixins.only('tab') {
+///       width: 50%;
+///     }
+///   }
+///
+///   .mediatype {
+///     @include mixins.only('tab', 'screen, print') {
+///       color: #f00;
+///     }
+///   }
+///
+/// @example css - css
+///   @media screen and (768px <= width < 1200px) {
+///     .element {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media screen, print and (768px <= width < 1200px) {
+///     .mediatype {
+///       color: #f00;
+///     }
+///   }
+///
+@mixin only($key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key) {
+    $min: functions.get-value($key);
+    $next: functions.get-next-value($key);
+
+    @if $min != 0 and $next {
+      @if $type {
+        @media #{$type} and ($min <= width < $next) {
+          @content;
+        }
+      } @else {
+        @media screen and ($min <= width < $next) {
+          @content;
+        }
+      }
+    } @else if $min == 0 and $next {
+      @include max($key, $type) {
+        @content;
+      }
+    } @else if $min != 0 and $next == null {
+      @include min($key, $type) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @include true.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+      'only',
+      $is-test
+    );
+  }
+}
+
+///
+/// 指定したブレークポイント間の幅の場合にスタイルを適用する
+///
+/// @param {string} $min-key - 最小ブレークポイント
+/// @param {string} $max-key - 最大ブレークポイント
+/// @param {string | null} $type [null] - メディアタイプ
+///
+/// @example scss - scss
+///   @use 'sass-utils/breakpoint' with (
+///     $breakpoints: $breakpoints: (
+///       'xs': 0,
+///       'sm': 480px,
+///       'md': 768px,
+///       'lg': 960px,
+///       'xl': 1200px,
+///     )
+///   );
+///
+///   .element {
+///     @include mixins.between('sm', 'lg') {
+///       width: 50%;
+///     }
+///   }
+///
+///   .mediatype {
+///     @include mixins.between('sm', 'lg', 'screen, print') {
+///       color: #f00;
+///     }
+///   }
+///
+/// @example css - css
+///   @media screen and (480px <= width < 1200px) {
+///     .element {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media screen, print and (480px <= width < 1200px) {
+///     .mediatype {
+///       color: #f00;
+///     }
+///   }
+///
+@mixin between($min-key, $max-key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $min-key) and map.has-key(variables.$breakpoints, $max-key) {
+    $min: functions.get-value($min-key);
+    $max: functions.get-next-value($max-key);
+
+    @if $min != 0 and $max {
+      @if $type {
+        @media #{$type} and ($min <= width < $max) {
+          @content;
+        }
+      } @else {
+        @media screen and ($min <= width < $max) {
+          @content;
+        }
+      }
+    } @else if $min == 0 and $max {
+      @include max($max-key, $type) {
+        @content;
+      }
+    } @else if $min != 0 and $max == null {
+      @include min($min-key, $type) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @if not map.has-key(variables.$breakpoints, $min-key) {
+      @include true.error(
+        'Invalid key, `#{$min-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+        'between',
+        $is-test
+      );
+    } @else if not map.has-key(variables.$breakpoints, $max-key) {
+      @include true.error(
+        'Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+        'between',
+        $is-test
+      );
+    }
+  }
+}

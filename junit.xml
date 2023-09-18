@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="13" failures="0" errors="0" time="0.33">
+  <testsuite name="breakpoint" errors="0" failures="0" skipped="0" timestamp="2023-09-18T19:32:05" time="0.313" tests="13">
+    <testcase classname="breakpoint functions get() 指定したブレークポイントの値を返す" name="breakpoint functions get() 指定したブレークポイントの値を返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint functions get() 指定したブレークポイントが存在しない場合はnullを返す" name="breakpoint functions get() 指定したブレークポイントが存在しない場合はnullを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint functions get-next() 次のブレークポイントの値を返す" name="breakpoint functions get-next() 次のブレークポイントの値を返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint functions get-next() 次のブレークポイントが存在しない場合はnullを返す" name="breakpoint functions get-next() 次のブレークポイントが存在しない場合はnullを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint functions get-next() 指定したブレークポイントが存在しない場合はnullを返す" name="breakpoint functions get-next() 指定したブレークポイントが存在しない場合はnullを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins min ブレークポイントルールを返す" name="breakpoint mixins min ブレークポイントルールを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins min 未定義のブレークポイントエラー" name="breakpoint mixins min 未定義のブレークポイントエラー" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins max ブレークポイントルールを返す" name="breakpoint mixins max ブレークポイントルールを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins max 未定義のブレークポイントエラー" name="breakpoint mixins max 未定義のブレークポイントエラー" time="0.001">
+    </testcase>
+    <testcase classname="breakpoint mixins only ブレークポイントルールを返す" name="breakpoint mixins only ブレークポイントルールを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins only 未定義のブレークポイントエラー" name="breakpoint mixins only 未定義のブレークポイントエラー" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins between ブレークポイントルールを返す" name="breakpoint mixins between ブレークポイントルールを返す" time="0">
+    </testcase>
+    <testcase classname="breakpoint mixins between 未定義のブレークポイントエラー" name="breakpoint mixins between 未定義のブレークポイントエラー" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

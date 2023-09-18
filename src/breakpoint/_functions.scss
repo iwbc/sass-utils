@@ -1,0 +1,36 @@
+////
+/// @group 01. ブレークポイント
+////
+
+@use 'sass:list';
+@use 'sass:map';
+@use './variables';
+
+///
+/// 指定したブレークポイントの値を取得する
+///
+/// @access private
+///
+/// @param {string} $key - ブレークポイントのキー
+///
+/// @return {number | null} - 指定したブレークポイントが存在しない場合は`null`を返す
+///
+@function get-value($key) {
+  @return map.get(variables.$breakpoints, $key);
+}
+
+///
+/// 次のブレークポイントの値を取得する
+///
+/// @access private
+///
+/// @param {string} $key - ブレークポイントのキー
+///
+/// @return {number | null} - 指定したブレークポイントまたは次のブレークポイントが存在しない場合は`null`を返す
+///
+@function get-next-value($key) {
+  $keys: map.keys(variables.$breakpoints);
+  $index: list.index($keys, $key);
+
+  @return if($index != null and $index < length($keys), map.get(variables.$breakpoints, nth($keys, $index + 1)), null);
+}
