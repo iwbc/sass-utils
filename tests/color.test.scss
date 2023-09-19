@@ -1,0 +1,26 @@
+@use 'true' as *;
+@use '../src/color/variables' with (
+  $colors: (
+    'black': #000,
+  )
+);
+@use '../src/color/functions';
+
+$catch-errors: true;
+
+@include describe('color') {
+  @include describe('functions') {
+    @include describe('get()') {
+      @include it('カラーコードを返す') {
+        @include assert-equal(functions.get('black'), #000);
+      }
+
+      @include it('未定義の色エラー') {
+        @include assert-equal(
+          functions.get('unknown'),
+          'ERROR [color.get()]: Invalid key, `unknown` is not defined. Choose one of black.'
+        );
+      }
+    }
+  }
+}

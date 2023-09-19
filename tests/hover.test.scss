@@ -1,0 +1,50 @@
+@use 'true' as *;
+@use '../src/hover/mixins';
+
+$catch-errors: true;
+
+@include describe('hover') {
+  @include describe('mixins') {
+    @include describe('media') {
+      @include it('hoverルールを返す') {
+        @include output(false) {
+          a {
+            @include mixins.media {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      @include expect(false) {
+        @media (hover) and (pointer) {
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    @include describe('selector') {
+      @include it('hoverルールを返す') {
+        @include output(false) {
+          a {
+            @include mixins.selector {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      @include expect(false) {
+        @media (hover) and (pointer) {
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,9 +9,9 @@
   )
 );
 @use '../src/breakpoint/functions';
-@use '../src/breakpoint/mixins' with (
-  $is-test: true
-);
+@use '../src/breakpoint/mixins';
+
+$catch-errors: true;
 
 @include describe('breakpoint') {
   @include describe('functions') {
@@ -104,7 +104,7 @@
 
           @include expect {
             .error {
-              /* ERROR [min]: */
+              /* ERROR [breakpoint.min]: */
               /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }
@@ -175,7 +175,7 @@
 
           @include expect {
             .error {
-              /* ERROR [max]: */
+              /* ERROR [breakpoint.max]: */
               /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }
@@ -248,7 +248,7 @@
 
           @include expect {
             .error {
-              /* ERROR [only]: */
+              /* ERROR [breakpoint.only]: */
               /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }
@@ -327,12 +327,12 @@
 
           @include expect {
             .error-min {
-              /* ERROR [between]: */
+              /* ERROR [breakpoint.between]: */
               /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
 
             .error-max {
-              /* ERROR [between]: */
+              /* ERROR [breakpoint.between]: */
               /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }

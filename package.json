@@ -1,14 +1,11 @@
 {
   "name": "@iwbc/sass-utils",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "github:iwbc/sass-utils"
-  },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "node": "^18.17.0"
   },
+  "packageManager": "yarn@3.6.3",
   "scripts": {
     "lint": "stylelint '**/*.scss'",
     "test": "jest",
@@ -38,10 +35,5 @@
     "sassdoc": "^2.7.4",
     "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^11.0.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "packageManager": "yarn@3.6.3"
+  }
 }

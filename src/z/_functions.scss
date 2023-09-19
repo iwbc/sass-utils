@@ -1,0 +1,26 @@
+////
+/// @group z
+////
+
+@use 'sass:map';
+@use 'sass-true/sass/throw';
+@use './variables';
+
+///
+/// 指定した名前のz-index値を取得する
+///
+/// @param {string} $key - $z-indexesのいずれかのキー
+/// @param {number} $index [0] - ここで指定した値を加算した結果を出力する（負の値の場合は減算）
+///
+/// @return {number} - z-index値
+///
+@function get($key, $index: 0) {
+  @if not map.has-key(variables.$z-indexes, $key) {
+    @return throw.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$z-indexes)}.',
+      'z.get()'
+    );
+  }
+
+  @return map.get(variables.$z-indexes, $key) + $index;
+}

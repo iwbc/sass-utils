@@ -1,0 +1,57 @@
+////
+/// @group hover
+////
+
+///
+/// hoverが利用できるデバイスかつマウスなど正確なポインターデバイスがある場合のみスタイルを適用するメディアクエリーを出力する
+///
+/// @example scss - scss
+///   @use 'sass-utils/hover';
+///
+///   a {
+///     @include hover.media {
+///       &:hover {
+///         text-decoration: underline;
+///       }
+///     }
+///   }
+///
+/// @example css -css
+///   @media (hover) and (pointer) {
+///     a:hover {
+///       text-decoration: underline;
+///     }
+///   }
+///
+@mixin media {
+  @media (hover) and (pointer) {
+    @content;
+  }
+}
+
+///
+/// hoverが利用できるデバイスかつマウスなど正確なポインターデバイスがある場合のみスタイルを適用するメディアクエリーと&:hoverセレクタを出力する
+///
+/// @example scss - scss
+///   @use 'sass-utils/hover';
+///
+///   a {
+///     @include hover.selector {
+///       text-decoration: underline;
+///     }
+///   }
+///
+/// @example css - css
+///   @media (hover) and (pointer) {
+///     a:hover {
+///       text-decoration: underline;
+///     }
+///   }
+///
+@mixin selector {
+  @include media {
+    &:hover {
+      @content;
+    }
+  }
+}

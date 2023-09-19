@@ -1,0 +1,27 @@
+@use 'true' as *;
+@use '../src/z/variables' with (
+  $z-indexes: (
+    'overlay': 10000,
+  )
+);
+@use '../src/z/functions';
+
+$catch-errors: true;
+
+@include describe('z') {
+  @include describe('functions') {
+    @include describe('get()') {
+      @include it('z-index値を返す') {
+        @include assert-equal(functions.get('overlay'), 10000);
+        @include assert-equal(functions.get('overlay', 1), 10001);
+      }
+
+      @include it('未定義のキーエラー') {
+        @include assert-equal(
+          functions.get('unknown'),
+          'ERROR [z.get()]: Invalid key, `unknown` is not defined. Choose one of overlay.'
+        );
+      }
+    }
+  }
+}

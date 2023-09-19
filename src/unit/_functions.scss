@@ -1,0 +1,118 @@
+////
+/// @group unit
+////
+
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass-true/sass/throw';
+@use './variables';
+
+///
+/// px値をrem値に変換する
+///
+/// @param {number} $px - px値 (単位は省略可)
+/// @param {number} $basis [$base-font-size] - 変換基準値 (単位は省略可)
+///
+/// @return {number} - rem値
+///
+@function rem($px, $basis: variables.$base-font-size) {
+  @if meta.type-of($px) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.rem()');
+  } @else if meta.type-of($basis) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.rem()');
+  }
+
+  @return abs-to-rel($px, $basis) * 1rem;
+}
+
+///
+/// px値を%値に変換する
+///
+/// @param {number} $px - 変換対象値 (単位は省略可)
+/// @param {number} $basis - 変換基準値 (単位は省略可)
+///
+/// @return {number} - %値
+///
+@function per($px, $basis) {
+  @if meta.type-of($px) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.per()');
+  } @else if meta.type-of($basis) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.per()');
+  }
+
+  @return math.percentage(abs-to-rel($px, $basis));
+}
+
+/// px値をvw値に変換する
+///
+/// @param {number} $px - 変換対象値 (単位は省略可)
+/// @param {number} $basis - 変換基準値 (単位は省略可)
+///
+/// @return {number} - vw値
+///
+@function vw($px, $basis) {
+  @if meta.type-of($px) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()');
+  } @else if meta.type-of($basis) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vw()');
+  }
+
+  @return abs-to-rel($px, $basis, true) * 1vw;
+}
+
+/// px値をvh値に変換する
+///
+/// @param {number} $px - 変換対象値 (単位は省略可)
+/// @param {number} $basis - 変換基準値 (単位は省略可)
+///
+/// @return {number} - vh値
+///
+@function vh($px, $basis) {
+  @if meta.type-of($px) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()');
+  } @else if meta.type-of($basis) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vh()');
+  }
+
+  @return abs-to-rel($px, $basis, true) * 1vh;
+}
+
+///
+/// 数値から単位を取り除く
+///
+/// @param {number} $value - 単位付きの数値
+///
+/// @return {number} - 単位を取り除いた数値
+///
+@function strip($value) {
+  @if meta.type-of($value) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($value)}` type. Choose a number type instead.', 'unit.strip()');
+  } @else if meta.type-of($value) == 'number' and not math.is-unitless($value) {
+    @return math.div($value, ($value * 0 + 1));
+  }
+
+  @return $value;
+}
+
+///
+/// 絶対単位の値から相対単位の値に変換する
+///
+/// @param {number} $abs - 変換対象値 (単位は省略可)
+/// @param {number} $basis - 変換基準値 (単位は省略可)
+/// @param {boolean} $per [false] - 百分率の形式（%の単位なし）で返す場合はtrueを指定する
+///
+/// @return {number} - 0〜1または0〜100の数値
+///
+@function abs-to-rel($abs, $basis, $per: false) {
+  @if meta.type-of($abs) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($abs)}` type. Choose a number type instead.', 'unit.abs-to-rel()');
+  } @else if meta.type-of($basis) != 'number' {
+    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.abs-to-rel()');
+  }
+
+  $abs: strip($abs);
+  $basis: strip($basis);
+  $rel: math.div($abs, $basis);
+
+  @return if($per, $rel * 100, $rel);
+}

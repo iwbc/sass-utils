@@ -1,13 +1,11 @@
 ////
-/// @group 01. ブレークポイント
+/// @group breakpoint
 ////
 
 @use 'sass:map';
-@use 'true';
+@use 'sass-true/sass/true';
 @use './functions';
 @use './variables';
-
-$is-test: false !default;
 
 ///
 /// ブレークポイントの幅以上の場合にスタイルを適用する
@@ -68,8 +66,7 @@ $is-test: false !default;
   @else {
     @include true.error(
       'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'min',
-      $is-test
+      'breakpoint.min'
     );
   }
 }
@@ -133,8 +130,7 @@ $is-test: false !default;
   @else {
     @include true.error(
       'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'max',
-      $is-test
+      'breakpoint.max'
     );
   }
 }
@@ -207,8 +203,7 @@ $is-test: false !default;
   @else {
     @include true.error(
       'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'only',
-      $is-test
+      'breakpoint.only'
     );
   }
 }
@@ -289,14 +284,12 @@ $is-test: false !default;
     @if not map.has-key(variables.$breakpoints, $min-key) {
       @include true.error(
         'Invalid key, `#{$min-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-        'between',
-        $is-test
+        'breakpoint.between'
       );
     } @else if not map.has-key(variables.$breakpoints, $max-key) {
       @include true.error(
         'Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-        'between',
-        $is-test
+        'breakpoint.between'
       );
     }
   }

@@ -1,0 +1,25 @@
+////
+/// @group color
+////
+
+@use 'sass:map';
+@use 'sass-true/sass/throw';
+@use './variables';
+
+///
+/// 指定した色名のカラーコードを取得する
+///
+/// @param {string} $key - 色名
+///
+/// @return {color} - カラーコード
+///
+@function get($key) {
+  @if not map.has-key(variables.$colors, $key) {
+    @return throw.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$colors)}.',
+      'color.get()'
+    );
+  }
+
+  @return map.get(variables.$colors, $key);
+}
