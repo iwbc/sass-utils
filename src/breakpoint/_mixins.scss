@@ -71,6 +71,36 @@
   }
 }
 
+/// min-width版
+/// 将来的に削除
+@mixin min-legacy($key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key) {
+    $min: functions.get-value($key);
+
+    @if $min != 0 {
+      @if $type {
+        @media #{$type} and (min-width: $min) {
+          @content;
+        }
+      } @else {
+        @media screen and (min-width: $min) {
+          @content;
+        }
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @include true.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+      'breakpoint.min'
+    );
+  }
+}
+
 ///
 /// 次のブレークポイントの幅未満の場合にスタイルを適用する
 ///
@@ -118,6 +148,36 @@
         }
       } @else {
         @media screen and (width < $next) {
+          @content;
+        }
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // エラー
+  @else {
+    @include true.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
+      'breakpoint.max'
+    );
+  }
+}
+
+/// max-width版
+/// 将来的に削除
+@mixin max-legacy($key, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key) {
+    $next: functions.get-next-value($key);
+
+    @if $next {
+      @if $type {
+        @media #{$type} and (max-width: $next - 0.02px) {
+          @content;
+        }
+      } @else {
+        @media screen and (max-width: $next - 0.02px) {
           @content;
         }
       }
