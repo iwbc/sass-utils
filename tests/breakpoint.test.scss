@@ -1,5 +1,5 @@
 @use 'true' as *;
-@use '../src/breakpoint//variables' with (
+@use '../scss/breakpoint//variables' with (
   $breakpoints: (
     'xs': 0,
     'sm': 480px,
@@ -8,8 +8,8 @@
     'xl': 1200px,
   )
 );
-@use '../src/breakpoint/functions';
-@use '../src/breakpoint/mixins';
+@use '../scss/breakpoint/functions';
+@use '../scss/breakpoint/mixins';
 
 $catch-errors: true;
 

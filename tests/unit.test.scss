@@ -1,8 +1,8 @@
 @use 'true' as *;
-@use '../src/unit/variables' with (
+@use '../scss/unit/variables' with (
   $base-font-size: 16px
 );
-@use '../src/unit/functions';
+@use '../scss/unit/functions';
 
 $catch-errors: true;
 
