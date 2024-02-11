@@ -3,7 +3,6 @@
 ////
 
 @use 'sass:map';
-@use 'sass-true/sass/true';
 @use './functions';
 @use './variables';
 
@@ -64,10 +63,7 @@
 
   // エラー
   @else {
-    @include true.error(
-      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'breakpoint.min'
-    );
+    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
   }
 }
 
@@ -94,10 +90,7 @@
 
   // エラー
   @else {
-    @include true.error(
-      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'breakpoint.min'
-    );
+    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
   }
 }
 
@@ -158,10 +151,7 @@
 
   // エラー
   @else {
-    @include true.error(
-      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'breakpoint.max'
-    );
+    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
   }
 }
 
@@ -188,10 +178,7 @@
 
   // エラー
   @else {
-    @include true.error(
-      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'breakpoint.max'
-    );
+    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
   }
 }
 
@@ -261,10 +248,7 @@
 
   // エラー
   @else {
-    @include true.error(
-      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-      'breakpoint.only'
-    );
+    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
   }
 }
 
@@ -342,15 +326,9 @@
   // エラー
   @else {
     @if not map.has-key(variables.$breakpoints, $min-key) {
-      @include true.error(
-        'Invalid key, `#{$min-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-        'breakpoint.between'
-      );
+      @error "Invalid key, `#{min-$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
     } @else if not map.has-key(variables.$breakpoints, $max-key) {
-      @include true.error(
-        'Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.',
-        'breakpoint.between'
-      );
+      @error "Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
     }
   }
 }

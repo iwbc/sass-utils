@@ -91,25 +91,6 @@ $catch-errors: true;
           }
         }
       }
-
-      @include it('未定義のブレークポイントエラー') {
-        @include assert {
-          @include output {
-            .error {
-              @include mixins.min('unknown') {
-                width: 100%;
-              }
-            }
-          }
-
-          @include expect {
-            .error {
-              /* ERROR [breakpoint.min]: */
-              /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
-            }
-          }
-        }
-      }
     }
 
     @include describe('max') {
@@ -158,25 +139,6 @@ $catch-errors: true;
               .mediatype {
                 color: #f00;
               }
-            }
-          }
-        }
-      }
-
-      @include it('未定義のブレークポイントエラー') {
-        @include assert {
-          @include output {
-            .error {
-              @include mixins.max('unknown') {
-                width: 100%;
-              }
-            }
-          }
-
-          @include expect {
-            .error {
-              /* ERROR [breakpoint.max]: */
-              /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }
         }
@@ -235,25 +197,6 @@ $catch-errors: true;
           }
         }
       }
-
-      @include it('未定義のブレークポイントエラー') {
-        @include assert {
-          @include output {
-            .error {
-              @include mixins.only('unknown') {
-                width: 100%;
-              }
-            }
-          }
-
-          @include expect {
-            .error {
-              /* ERROR [breakpoint.only]: */
-              /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
-            }
-          }
-        }
-      }
     }
 
     @include describe('between') {
@@ -304,36 +247,6 @@ $catch-errors: true;
               .mediatype {
                 color: #f00;
               }
-            }
-          }
-        }
-      }
-
-      @include it('未定義のブレークポイントエラー') {
-        @include assert {
-          @include output {
-            .error-min {
-              @include mixins.between('unknown', 'sm') {
-                width: 100%;
-              }
-            }
-
-            .error-max {
-              @include mixins.between('sm', 'unknown') {
-                width: 100%;
-              }
-            }
-          }
-
-          @include expect {
-            .error-min {
-              /* ERROR [breakpoint.between]: */
-              /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
-            }
-
-            .error-max {
-              /* ERROR [breakpoint.between]: */
-              /*   Invalid key, `unknown` is not defined. Choose one of xs, sm, md, lg, xl. */
             }
           }
         }
