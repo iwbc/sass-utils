@@ -27,11 +27,11 @@ $catch-errors: true;
       }
     }
 
-    @include describe('selector') {
+    @include describe('this') {
       @include it('hoverルールを返す') {
         @include output(false) {
           a {
-            @include mixins.selector {
+            @include mixins.this {
               text-decoration: underline;
             }
           }
