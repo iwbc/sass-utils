@@ -2,30 +2,23 @@
   &#39;sp&#39;: 0,
   &#39;tab&#39;: 768px,
   &#39;pc&#39;: 1200px,
-) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>ブレークポイント</p></div></section></section><section class="main__sub-section" id="breakpoint-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="breakpoint-mixin-min"><h3 class="item__heading"><a class="item__name" href="#mixin-min">min</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min($key, $type: null) { 
-  @if map.has-key(variables.$breakpoints, $key) {
-    $min: functions.get-value($key);
+) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>ブレークポイント</p></div></section></section><section class="main__sub-section" id="breakpoint-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="breakpoint-mixin-min"><h3 class="item__heading"><a class="item__name" href="#mixin-min">min</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min($key-value, $type: null) { 
+  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
 
-    @if $min != 0 {
-      @if $type {
-        @media #{$type} and ($min &lt;= width) {
-          @content;
-        }
-      } @else {
-        @media screen and ($min &lt;= width) {
-          @content;
-        }
+  @if unit.strip($min) != 0 {
+    @if $type {
+      @media #{$type} and ($min &lt;= width) {
+        @content;
       }
     } @else {
-      @content;
+      @media ($min &lt;= width) {
+        @content;
+      }
     }
+  } @else {
+    @content;
   }
-
-  // エラー
-  @else {
-    @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
-  }
- }" data-collapsed="@mixin min($key, $type: null) { ... }"><code>@mixin min($key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>ブレークポイントの幅以上の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>ブレークポイント</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+ }" data-collapsed="@mixin min($key-value, $type: null) { ... }"><code>@mixin min($key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以上の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
 );
 
@@ -35,13 +28,25 @@
   }
 }
 
+.element2 {
+  @include breakpoint.min(1024px) {
+    width: 100%;
+  }
+}
+
 .mediatype {
   @include breakpoint.min(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (768px &lt;= width) {
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (768px &lt;= width) {
   .element {
     width: 50%;
+  }
+}
+
+@media (1024px &lt;= width) {
+  .element2 {
+    width: 100%;
   }
 }
 
@@ -50,31 +55,24 @@
     color: #f00;
   }
 }</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-min-legacy"><h3 class="item__heading"><a class="item__name" href="#mixin-min-legacy">min-legacy</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min-legacy() { 
-  @if map.has-key(variables.$breakpoints, $key) {
-    $min: functions.get-value($key);
+  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
 
-    @if $min != 0 {
-      @if $type {
-        @media #{$type} and (min-width: $min) {
-          @content;
-        }
-      } @else {
-        @media screen and (min-width: $min) {
-          @content;
-        }
+  @if unit.strip($min) != 0 {
+    @if $type {
+      @media #{$type} and (min-width: $min) {
+        @content;
       }
     } @else {
-      @content;
+      @media (min-width: $min) {
+        @content;
+      }
     }
+  } @else {
+    @content;
   }
-
-  // エラー
-  @else {
-    @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
-  }
- }" data-collapsed="@mixin min-legacy() { ... }"><code>@mixin min-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>min-width版 将来的に削除</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="breakpoint-mixin-max"><h3 class="item__heading"><a class="item__name" href="#mixin-max">max</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin max($key, $type: null) { 
-  @if map.has-key(variables.$breakpoints, $key) {
-    $next: functions.get-next-value($key);
+ }" data-collapsed="@mixin min-legacy() { ... }"><code>@mixin min-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>min-width版 将来的に削除</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="breakpoint-mixin-max"><h3 class="item__heading"><a class="item__name" href="#mixin-max">max</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin max($key-value, $type: null) { 
+  @if map.has-key(variables.$breakpoints, $key-value) {
+    $next: functions.get-next-value($key-value);
 
     @if $next {
       @if $type {
@@ -82,20 +80,25 @@
           @content;
         }
       } @else {
-        @media screen and (width &lt; $next) {
+        @media (width &lt; $next) {
           @content;
         }
       }
     } @else {
       @content;
     }
+  } @else {
+    @if $type {
+      @media #{$type} and (width &lt;= $key-value) {
+        @content;
+      }
+    } @else {
+      @media (width &lt;= $key-value) {
+        @content;
+      }
+    }
   }
-
-  // エラー
-  @else {
-    @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
-  }
- }" data-collapsed="@mixin max($key, $type: null) { ... }"><code>@mixin max($key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>次のブレークポイントの幅未満の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>ブレークポイント</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+ }" data-collapsed="@mixin max($key-value, $type: null) { ... }"><code>@mixin max($key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以下の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
 );
 
@@ -105,13 +108,25 @@
   }
 }
 
+.element2 {
+  @include breakpoint.max(600px) {
+    width: 100%;
+  }
+}
+
 .mediatype {
   @include breakpoint.max(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (width &lt; 1200px) {
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (width &lt; 1200px) {
   .element {
     width: 50%;
+  }
+}
+
+@media (width &lt;= 600px) {
+  .element2 {
+    width: 100%;
   }
 }
 
@@ -129,39 +144,44 @@
           @content;
         }
       } @else {
-        @media screen and (max-width: $next - 0.02px) {
+        @media (max-width: $next - 0.02px) {
           @content;
         }
       }
     } @else {
       @content;
     }
-  }
-
-  // エラー
-  @else {
-    @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
+  } @else {
+    @if $type {
+      @media #{$type} and (max-width: $key-value - 0.02px) {
+        @content;
+      }
+    } @else {
+      @media (max-width: $key-value - 0.02px) {
+        @content;
+      }
+    }
   }
  }" data-collapsed="@mixin max-legacy() { ... }"><code>@mixin max-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>max-width版 将来的に削除</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="breakpoint-mixin-only"><h3 class="item__heading"><a class="item__name" href="#mixin-only">only</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin only($key, $type: null) { 
   @if map.has-key(variables.$breakpoints, $key) {
     $min: functions.get-value($key);
     $next: functions.get-next-value($key);
 
-    @if $min != 0 and $next {
+    @if unit.strip($min) != 0 and $next {
       @if $type {
         @media #{$type} and ($min &lt;= width &lt; $next) {
           @content;
         }
       } @else {
-        @media screen and ($min &lt;= width &lt; $next) {
+        @media ($min &lt;= width &lt; $next) {
           @content;
         }
       }
-    } @else if $min == 0 and $next {
+    } @else if unit.strip($min) == 0 and $next {
       @include max($key, $type) {
         @content;
       }
-    } @else if $min != 0 and $next == null {
+    } @else if unit.strip($min) != 0 and $next == null {
       @include min($key, $type) {
         @content;
       }
@@ -174,7 +194,7 @@
   @else {
     @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
   }
- }" data-collapsed="@mixin only($key, $type: null) { ... }"><code>@mixin only($key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>指定したブレークポイントの幅以上、次のブレークポイントの幅未満の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>ブレークポイント</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+ }" data-collapsed="@mixin only($key, $type: null) { ... }"><code>@mixin only($key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイントの場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>$breakpointsのキー</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
 );
 
@@ -188,7 +208,7 @@
   @include breakpoint.only(&#39;tab&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (768px &lt;= width &lt; 1200px) {
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (768px &lt;= width &lt; 1200px) {
   .element {
     width: 50%;
   }
@@ -198,27 +218,28 @@
   .mediatype {
     color: #f00;
   }
-}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-between"><h3 class="item__heading"><a class="item__name" href="#mixin-between">between</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin between($min-key, $max-key, $type: null) { 
-  @if map.has-key(variables.$breakpoints, $min-key) and map.has-key(variables.$breakpoints, $max-key) {
-    $min: functions.get-value($min-key);
-    $max: functions.get-next-value($max-key);
+}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-between"><h3 class="item__heading"><a class="item__name" href="#mixin-between">between</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin between($min-key-value, $max-key-value, $type: null) { 
+  // $min-key-valueと$max-key-valueがキーの場合
+  @if map.has-key(variables.$breakpoints, $min-key-value) and map.has-key(variables.$breakpoints, $max-key-value) {
+    $min: functions.get-value($min-key-value);
+    $next: functions.get-next-value($max-key-value);
 
-    @if $min != 0 and $max {
+    @if unit.strip($min) != 0 and $next {
       @if $type {
-        @media #{$type} and ($min &lt;= width &lt; $max) {
+        @media #{$type} and ($min &lt;= width &lt; $next) {
           @content;
         }
       } @else {
-        @media screen and ($min &lt;= width &lt; $max) {
+        @media ($min &lt;= width &lt; $next) {
           @content;
         }
       }
-    } @else if $min == 0 and $max {
-      @include max($max-key, $type) {
+    } @else if unit.strip($min) == 0 and $next {
+      @include max($max-key-value, $type) {
         @content;
       }
-    } @else if $min != 0 and $max == null {
-      @include min($min-key, $type) {
+    } @else if unit.strip($min) != 0 and $next == null {
+      @include min($min-key-value, $type) {
         @content;
       }
     } @else {
@@ -226,15 +247,78 @@
     }
   }
 
-  // エラー
-  @else {
-    @if not map.has-key(variables.$breakpoints, $min-key) {
-      @error &quot;Invalid key, `#{min-$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
-    } @else if not map.has-key(variables.$breakpoints, $max-key) {
-      @error &quot;Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
+  // $min-key-valueがキー、$max-key-valueが値の場合
+  @else if map.has-key(variables.$breakpoints, $min-key-value) {
+    $min: functions.get-value($min-key-value);
+    $max: $max-key-value;
+
+    @if unit.strip($min) != 0 {
+      @if $type {
+        @media #{$type} and ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      } @else {
+        @media ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      }
+    } @else {
+      @include max($max, $type) {
+        @content;
+      }
     }
   }
- }" data-collapsed="@mixin between($min-key, $max-key, $type: null) { ... }"><code>@mixin between($min-key, $max-key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>指定したブレークポイント間の幅の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$min-key</code></th><td data-label="desc"><p>最小ブレークポイント</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$max-key</code></th><td data-label="desc"><p>最大ブレークポイント</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+
+  // $min-key-valueが値、$max-key-valueがキーの場合
+  @else if map.has-key(variables.$breakpoints, $max-key-value) {
+    $min: $min-key-value;
+    $next: functions.get-next-value($max-key-value);
+
+    @if unit.strip($min) != 0 and $next {
+      @if $type {
+        @media #{$type} and ($min &lt;= width &lt; $next) {
+          @content;
+        }
+      } @else {
+        @media ($min &lt;= width &lt; $next) {
+          @content;
+        }
+      }
+    } @else if unit.strip($min) == 0 and $next {
+      @include max($max-key-value, $type) {
+        @content;
+      }
+    } @else if unit.strip($min) != 0 and $next == null {
+      @include min($min, $type) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // $min-key-valueと$max-key-valueが値の場合
+  @else {
+    $min: $min-key-value;
+    $max: $max-key-value;
+
+    @if unit.strip($min) != 0 {
+      @if $type {
+        @media #{$type} and ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      } @else {
+        @media ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      }
+    } @else {
+      @include max($max, $type) {
+        @content;
+      }
+    }
+  }
+ }" data-collapsed="@mixin between($min-key-value, $max-key-value, $type: null) { ... }"><code>@mixin between($min-key-value, $max-key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定した2つのブレークポイントの範囲内の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$min-key-value</code></th><td data-label="desc"><p>適用したい最小の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$max-key-value</code></th><td data-label="desc"><p>適用したい最大の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: $breakpoints: (
     &#39;xs&#39;: 0,
     &#39;sm&#39;: 480px,
@@ -250,12 +334,24 @@
   }
 }
 
+.element2 {
+  @include breakpoint.between(1024px, 1440px) {
+    width: 50%;
+  }
+}
+
 .mediatype {
   @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;, &#39;screen, print&#39;) {
     color: #f00;
   }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media screen and (480px &lt;= width &lt; 1200px) {
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (480px &lt;= width &lt; 1200px) {
   .element {
+    width: 50%;
+  }
+}
+
+@media (1024px &lt;= width &lt;= 1440px) {
+  .element2 {
     width: 50%;
   }
 }

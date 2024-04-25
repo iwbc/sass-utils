@@ -1,3 +1,5 @@
+/* stylelint-disable length-zero-no-unit */
+
 @use 'true' as *;
 @use '../scss/breakpoint//variables' with (
   $breakpoints: (
@@ -21,7 +23,7 @@ $catch-errors: true;
       }
 
       @include it('指定したブレークポイントが存在しない場合はnullを返す') {
-        @include assert-equal(functions.get-value('unknown'), null);
+        @include assert-equal(functions.get-value('not-exist'), null);
       }
     }
 
@@ -35,33 +37,19 @@ $catch-errors: true;
       }
 
       @include it('指定したブレークポイントが存在しない場合はnullを返す') {
-        @include assert-equal(functions.get-next-value('unknown'), null);
+        @include assert-equal(functions.get-next-value('not-exist'), null);
       }
     }
   }
 
   @include describe('mixins') {
     @include describe('min') {
-      @include it('ブレークポイントルールを返す') {
+      @include it('ブレークポイントルールを返す / 引数: "xs"（0 <= width）') {
         @include assert {
           @include output(false) {
             .element {
               @include mixins.min('xs') {
                 width: 100%;
-              }
-
-              @include mixins.min('md') {
-                width: 50%;
-              }
-
-              @include mixins.min('xl') {
-                width: 25%;
-              }
-            }
-
-            .mediatype {
-              @include mixins.min('md', 'screen, print') {
-                color: #f00;
               }
             }
           }
@@ -70,21 +58,101 @@ $catch-errors: true;
             .element {
               width: 100%;
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "md"（768px <= width）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.min('md') {
+                width: 50%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (768px <= width) {
               .element {
                 width: 50%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "xl"（1200px <= width）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.min('xl') {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (1200px <= width) {
               .element {
                 width: 25%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: 1440px') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.min(1440px) {
+                width: 20%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (1440px <= width) {
+              .element {
+                width: 20%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: 0px') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.min(0px) {
+                width: 100%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            .element {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: "md", "screen, print"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.min('md', 'screen, print') {
+                color: #f00;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media screen, print and (768px <= width) {
-              .mediatype {
+              .element {
                 color: #f00;
               }
             }
@@ -94,26 +162,12 @@ $catch-errors: true;
     }
 
     @include describe('max') {
-      @include it('ブレークポイントルールを返す') {
+      @include it('ブレークポイントルールを返す / 引数: "xl"（width <= ∞）') {
         @include assert {
           @include output(false) {
             .element {
               @include mixins.max('xl') {
                 width: 25%;
-              }
-
-              @include mixins.max('md') {
-                width: 50%;
-              }
-
-              @include mixins.max('xs') {
-                width: 100%;
-              }
-            }
-
-            .mediatype {
-              @include mixins.max('md', 'screen, print') {
-                color: #f00;
               }
             }
           }
@@ -122,21 +176,83 @@ $catch-errors: true;
             .element {
               width: 25%;
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "md"（width < 960px）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.max('md') {
+                width: 50%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (width < 960px) {
               .element {
                 width: 50%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "xs"（width < 480px）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.max('xs') {
+                width: 100%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (width < 480px) {
               .element {
                 width: 100%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: 1440px）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.max(1440px) {
+                width: 100%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (width <= 1440px) {
+              .element {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: "md", "screen, print"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.max('md', 'screen, print') {
+                color: #f00;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media screen, print and (width < 960px) {
-              .mediatype {
+              .element {
                 color: #f00;
               }
             }
@@ -146,26 +262,12 @@ $catch-errors: true;
     }
 
     @include describe('only') {
-      @include it('ブレークポイントルールを返す') {
+      @include it('ブレークポイントルールを返す / 引数: "xs"（0 <= width < 480px）') {
         @include assert {
           @include output(false) {
             .element {
               @include mixins.only('xs') {
                 width: 100%;
-              }
-
-              @include mixins.only('md') {
-                width: 50%;
-              }
-
-              @include mixins.only('xl') {
-                width: 25%;
-              }
-            }
-
-            .mediatype {
-              @include mixins.only('md', 'screen, print') {
-                color: #f00;
               }
             }
           }
@@ -176,21 +278,63 @@ $catch-errors: true;
                 width: 100%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "md"（768px <= width < 960px）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.only('md') {
+                width: 50%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (768px <= width < 960px) {
               .element {
                 width: 50%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "xl"（1200px <= width <= ∞）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.only('xl') {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (1200px <= width) {
               .element {
                 width: 25%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "md", "screen, print"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.only('md', 'screen, print') {
+                color: #f00;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media screen, print and (768px <= width < 960px) {
-              .mediatype {
+              .element {
                 color: #f00;
               }
             }
@@ -200,26 +344,12 @@ $catch-errors: true;
     }
 
     @include describe('between') {
-      @include it('ブレークポイントルールを返す') {
+      @include it('ブレークポイントルールを返す / 引数: "xs", "md"（0 <= width < 960px）') {
         @include assert {
           @include output(false) {
             .element {
               @include mixins.between('xs', 'md') {
                 width: 100%;
-              }
-
-              @include mixins.between('sm', 'lg') {
-                width: 50%;
-              }
-
-              @include mixins.between('md', 'xl') {
-                width: 25%;
-              }
-            }
-
-            .mediatype {
-              @include mixins.between('sm', 'lg', 'screen, print') {
-                color: #f00;
               }
             }
           }
@@ -230,21 +360,163 @@ $catch-errors: true;
                 width: 100%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "sm", "lg"（480px <= width < 1200px）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between('sm', 'lg') {
+                width: 50%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (480px <= width < 1200px) {
               .element {
                 width: 50%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: "md", "xl"（768px <= width <= ∞）') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between('md', 'xl') {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media (768px <= width) {
               .element {
                 width: 25%;
               }
             }
+          }
+        }
+      }
 
+      @include it('ブレークポイントルールを返す / 引数: 960px, 1280px') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between(960px, 1280px) {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (960px <= width <= 1280px) {
+              .element {
+                width: 25%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: "sm", 1280px') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between('sm', 1280px) {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (480px <= width <= 1280px) {
+              .element {
+                width: 25%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: 600px, "lg"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between(600px, 'lg') {
+                width: 25%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (600px <= width < 1200px) {
+              .element {
+                width: 25%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: 0px, 1280px') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between(0px, 1280px) {
+                width: 100%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (width <= 1280px) {
+              .element {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: 0px, "lg"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between(0px, 'lg') {
+                width: 100%;
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (width < 1200px) {
+              .element {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      @include it('ブレークポイントルールを返す / 引数: "sm", "lg", "screen, print"') {
+        @include assert {
+          @include output(false) {
+            .element {
+              @include mixins.between('sm', 'lg', 'screen, print') {
+                color: #f00;
+              }
+            }
+          }
+
+          @include expect(false) {
             @media screen, print and (480px <= width < 1200px) {
-              .mediatype {
+              .element {
                 color: #f00;
               }
             }

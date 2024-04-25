@@ -5,11 +5,12 @@
 @use 'sass:map';
 @use './functions';
 @use './variables';
+@use '../unit';
 
 ///
-/// ブレークポイントの幅以上の場合にスタイルを適用する
+/// 幅が指定したブレークポイント以上の場合にスタイルを適用する
 ///
-/// @param {string} $key - ブレークポイント
+/// @param {string} $key-value - $breakpointsのキーまたは幅の値
 /// @param {string | null} $type [null] - メディアタイプ
 ///
 /// @example scss - scss
@@ -20,6 +21,12 @@
 ///   .element {
 ///     @include breakpoint.min('tab') {
 ///       width: 50%;
+///     }
+///   }
+///
+///   .element2 {
+///     @include breakpoint.min(1024px) {
+///       width: 100%;
 ///     }
 ///   }
 ///
@@ -36,68 +43,60 @@
 ///     }
 ///   }
 ///
+///   @media (1024px <= width) {
+///     .element2 {
+///       width: 100%;
+///     }
+///   }
+///
 ///   @media screen, print and (768px <= width) {
 ///     .mediatype {
 ///       color: #f00;
 ///     }
 ///   }
 ///
-@mixin min($key, $type: null) {
-  @if map.has-key(variables.$breakpoints, $key) {
-    $min: functions.get-value($key);
+@mixin min($key-value, $type: null) {
+  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
 
-    @if $min != 0 {
-      @if $type {
-        @media #{$type} and ($min <= width) {
-          @content;
-        }
-      } @else {
-        @media ($min <= width) {
-          @content;
-        }
+  @if unit.strip($min) != 0 {
+    @if $type {
+      @media #{$type} and ($min <= width) {
+        @content;
       }
     } @else {
-      @content;
+      @media ($min <= width) {
+        @content;
+      }
     }
-  }
-
-  // エラー
-  @else {
-    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
+  } @else {
+    @content;
   }
 }
 
 /// min-width版
 /// 将来的に削除
-@mixin min-legacy($key, $type: null) {
-  @if map.has-key(variables.$breakpoints, $key) {
-    $min: functions.get-value($key);
+@mixin min-legacy($key-value, $type: null) {
+  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
 
-    @if $min != 0 {
-      @if $type {
-        @media #{$type} and (min-width: $min) {
-          @content;
-        }
-      } @else {
-        @media (min-width: $min) {
-          @content;
-        }
+  @if unit.strip($min) != 0 {
+    @if $type {
+      @media #{$type} and (min-width: $min) {
+        @content;
       }
     } @else {
-      @content;
+      @media (min-width: $min) {
+        @content;
+      }
     }
-  }
-
-  // エラー
-  @else {
-    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
+  } @else {
+    @content;
   }
 }
 
 ///
-/// 次のブレークポイントの幅未満の場合にスタイルを適用する
+/// 幅が指定したブレークポイント以下の場合にスタイルを適用する
 ///
-/// @param {string} $key - ブレークポイント
+/// @param {string} $key-value - $breakpointsのキーまたは幅の値
 /// @param {string | null} $type [null] - メディアタイプ
 ///
 /// @example scss - scss
@@ -108,6 +107,12 @@
 ///   .element {
 ///     @include breakpoint.max('tab') {
 ///       width: 50%;
+///     }
+///   }
+///
+///   .element2 {
+///     @include breakpoint.max(600px) {
+///       width: 100%;
 ///     }
 ///   }
 ///
@@ -124,15 +129,21 @@
 ///     }
 ///   }
 ///
+///   @media (width <= 600px) {
+///     .element2 {
+///       width: 100%;
+///     }
+///   }
+///
 ///   @media screen, print and (width < 1200px) {
 ///     .mediatype {
 ///       color: #f00;
 ///     }
 ///   }
 ///
-@mixin max($key, $type: null) {
-  @if map.has-key(variables.$breakpoints, $key) {
-    $next: functions.get-next-value($key);
+@mixin max($key-value, $type: null) {
+  @if map.has-key(variables.$breakpoints, $key-value) {
+    $next: functions.get-next-value($key-value);
 
     @if $next {
       @if $type {
@@ -147,11 +158,16 @@
     } @else {
       @content;
     }
-  }
-
-  // エラー
-  @else {
-    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
+  } @else {
+    @if $type {
+      @media #{$type} and (width <= $key-value) {
+        @content;
+      }
+    } @else {
+      @media (width <= $key-value) {
+        @content;
+      }
+    }
   }
 }
 
@@ -174,18 +190,23 @@
     } @else {
       @content;
     }
-  }
-
-  // エラー
-  @else {
-    @error "Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
+  } @else {
+    @if $type {
+      @media #{$type} and (max-width: $key-value - 0.02px) {
+        @content;
+      }
+    } @else {
+      @media (max-width: $key-value - 0.02px) {
+        @content;
+      }
+    }
   }
 }
 
 ///
-/// 指定したブレークポイントの幅以上、次のブレークポイントの幅未満の場合にスタイルを適用する
+/// 幅が指定したブレークポイントの場合にスタイルを適用する
 ///
-/// @param {string} $key - ブレークポイント
+/// @param {string} $key - $breakpointsのキー
 /// @param {string | null} $type [null] - メディアタイプ
 ///
 /// @example scss - scss
@@ -223,7 +244,7 @@
     $min: functions.get-value($key);
     $next: functions.get-next-value($key);
 
-    @if $min != 0 and $next {
+    @if unit.strip($min) != 0 and $next {
       @if $type {
         @media #{$type} and ($min <= width < $next) {
           @content;
@@ -233,11 +254,11 @@
           @content;
         }
       }
-    } @else if $min == 0 and $next {
+    } @else if unit.strip($min) == 0 and $next {
       @include max($key, $type) {
         @content;
       }
-    } @else if $min != 0 and $next == null {
+    } @else if unit.strip($min) != 0 and $next == null {
       @include min($key, $type) {
         @content;
       }
@@ -253,10 +274,10 @@
 }
 
 ///
-/// 指定したブレークポイント間の幅の場合にスタイルを適用する
+/// 幅が指定した2つのブレークポイントの範囲内の場合にスタイルを適用する
 ///
-/// @param {string} $min-key - 最小ブレークポイント
-/// @param {string} $max-key - 最大ブレークポイント
+/// @param {string} $min-key-value - 適用したい最小の$breakpointsのキーまたは幅の値
+/// @param {string} $max-key-value - 適用したい最大の$breakpointsのキーまたは幅の値
 /// @param {string | null} $type [null] - メディアタイプ
 ///
 /// @example scss - scss
@@ -276,6 +297,12 @@
 ///     }
 ///   }
 ///
+///   .element2 {
+///     @include breakpoint.between(1024px, 1440px) {
+///       width: 50%;
+///     }
+///   }
+///
 ///   .mediatype {
 ///     @include breakpoint.between('sm', 'lg', 'screen, print') {
 ///       color: #f00;
@@ -289,33 +316,40 @@
 ///     }
 ///   }
 ///
+///   @media (1024px <= width <= 1440px) {
+///     .element2 {
+///       width: 50%;
+///     }
+///   }
+///
 ///   @media screen, print and (480px <= width < 1200px) {
 ///     .mediatype {
 ///       color: #f00;
 ///     }
 ///   }
 ///
-@mixin between($min-key, $max-key, $type: null) {
-  @if map.has-key(variables.$breakpoints, $min-key) and map.has-key(variables.$breakpoints, $max-key) {
-    $min: functions.get-value($min-key);
-    $max: functions.get-next-value($max-key);
+@mixin between($min-key-value, $max-key-value, $type: null) {
+  // $min-key-valueと$max-key-valueがキーの場合
+  @if map.has-key(variables.$breakpoints, $min-key-value) and map.has-key(variables.$breakpoints, $max-key-value) {
+    $min: functions.get-value($min-key-value);
+    $next: functions.get-next-value($max-key-value);
 
-    @if $min != 0 and $max {
+    @if unit.strip($min) != 0 and $next {
       @if $type {
-        @media #{$type} and ($min <= width < $max) {
+        @media #{$type} and ($min <= width < $next) {
           @content;
         }
       } @else {
-        @media ($min <= width < $max) {
+        @media ($min <= width < $next) {
           @content;
         }
       }
-    } @else if $min == 0 and $max {
-      @include max($max-key, $type) {
+    } @else if unit.strip($min) == 0 and $next {
+      @include max($max-key-value, $type) {
         @content;
       }
-    } @else if $min != 0 and $max == null {
-      @include min($min-key, $type) {
+    } @else if unit.strip($min) != 0 and $next == null {
+      @include min($min-key-value, $type) {
         @content;
       }
     } @else {
@@ -323,12 +357,75 @@
     }
   }
 
-  // エラー
+  // $min-key-valueがキー、$max-key-valueが値の場合
+  @else if map.has-key(variables.$breakpoints, $min-key-value) {
+    $min: functions.get-value($min-key-value);
+    $max: $max-key-value;
+
+    @if unit.strip($min) != 0 {
+      @if $type {
+        @media #{$type} and ($min <= width <= $max) {
+          @content;
+        }
+      } @else {
+        @media ($min <= width <= $max) {
+          @content;
+        }
+      }
+    } @else {
+      @include max($max, $type) {
+        @content;
+      }
+    }
+  }
+
+  // $min-key-valueが値、$max-key-valueがキーの場合
+  @else if map.has-key(variables.$breakpoints, $max-key-value) {
+    $min: $min-key-value;
+    $next: functions.get-next-value($max-key-value);
+
+    @if unit.strip($min) != 0 and $next {
+      @if $type {
+        @media #{$type} and ($min <= width < $next) {
+          @content;
+        }
+      } @else {
+        @media ($min <= width < $next) {
+          @content;
+        }
+      }
+    } @else if unit.strip($min) == 0 and $next {
+      @include max($max-key-value, $type) {
+        @content;
+      }
+    } @else if unit.strip($min) != 0 and $next == null {
+      @include min($min, $type) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  }
+
+  // $min-key-valueと$max-key-valueが値の場合
   @else {
-    @if not map.has-key(variables.$breakpoints, $min-key) {
-      @error "Invalid key, `#{min-$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
-    } @else if not map.has-key(variables.$breakpoints, $max-key) {
-      @error "Invalid key, `#{$max-key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.";
+    $min: $min-key-value;
+    $max: $max-key-value;
+
+    @if unit.strip($min) != 0 {
+      @if $type {
+        @media #{$type} and ($min <= width <= $max) {
+          @content;
+        }
+      } @else {
+        @media ($min <= width <= $max) {
+          @content;
+        }
+      }
+    } @else {
+      @include max($max, $type) {
+        @content;
+      }
     }
   }
 }
