@@ -30,7 +30,7 @@
 ///   }
 ///
 /// @example css - css
-///   @media screen and (768px <= width) {
+///   @media (768px <= width) {
 ///     .element {
 ///       width: 50%;
 ///     }
@@ -52,7 +52,7 @@
           @content;
         }
       } @else {
-        @media screen and ($min <= width) {
+        @media ($min <= width) {
           @content;
         }
       }
@@ -79,7 +79,7 @@
           @content;
         }
       } @else {
-        @media screen and (min-width: $min) {
+        @media (min-width: $min) {
           @content;
         }
       }
@@ -118,7 +118,7 @@
 ///   }
 ///
 /// @example css - css
-///   @media screen and (width < 1200px) {
+///   @media (width < 1200px) {
 ///     .element {
 ///       width: 50%;
 ///     }
@@ -140,7 +140,7 @@
           @content;
         }
       } @else {
-        @media screen and (width < $next) {
+        @media (width < $next) {
           @content;
         }
       }
@@ -167,7 +167,7 @@
           @content;
         }
       } @else {
-        @media screen and (max-width: $next - 0.02px) {
+        @media (max-width: $next - 0.02px) {
           @content;
         }
       }
@@ -206,7 +206,7 @@
 ///   }
 ///
 /// @example css - css
-///   @media screen and (768px <= width < 1200px) {
+///   @media (768px <= width < 1200px) {
 ///     .element {
 ///       width: 50%;
 ///     }
@@ -229,7 +229,7 @@
           @content;
         }
       } @else {
-        @media screen and ($min <= width < $next) {
+        @media ($min <= width < $next) {
           @content;
         }
       }
@@ -283,7 +283,7 @@
 ///   }
 ///
 /// @example css - css
-///   @media screen and (480px <= width < 1200px) {
+///   @media (480px <= width < 1200px) {
 ///     .element {
 ///       width: 50%;
 ///     }
@@ -306,7 +306,7 @@
           @content;
         }
       } @else {
-        @media screen and ($min <= width < $max) {
+        @media ($min <= width < $max) {
           @content;
         }
       }

@@ -71,13 +71,13 @@ $catch-errors: true;
               width: 100%;
             }
 
-            @media screen and (768px <= width) {
+            @media (768px <= width) {
               .element {
                 width: 50%;
               }
             }
 
-            @media screen and (1200px <= width) {
+            @media (1200px <= width) {
               .element {
                 width: 25%;
               }
@@ -123,13 +123,13 @@ $catch-errors: true;
               width: 25%;
             }
 
-            @media screen and (width < 960px) {
+            @media (width < 960px) {
               .element {
                 width: 50%;
               }
             }
 
-            @media screen and (width < 480px) {
+            @media (width < 480px) {
               .element {
                 width: 100%;
               }
@@ -171,19 +171,19 @@ $catch-errors: true;
           }
 
           @include expect(false) {
-            @media screen and (width < 480px) {
+            @media (width < 480px) {
               .element {
                 width: 100%;
               }
             }
 
-            @media screen and (768px <= width < 960px) {
+            @media (768px <= width < 960px) {
               .element {
                 width: 50%;
               }
             }
 
-            @media screen and (1200px <= width) {
+            @media (1200px <= width) {
               .element {
                 width: 25%;
               }
@@ -225,19 +225,19 @@ $catch-errors: true;
           }
 
           @include expect(false) {
-            @media screen and (width < 960px) {
+            @media (width < 960px) {
               .element {
                 width: 100%;
               }
             }
 
-            @media screen and (480px <= width < 1200px) {
+            @media (480px <= width < 1200px) {
               .element {
                 width: 50%;
               }
             }
 
-            @media screen and (768px <= width) {
+            @media (768px <= width) {
               .element {
                 width: 25%;
               }
