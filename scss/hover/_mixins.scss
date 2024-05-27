@@ -9,7 +9,7 @@
 ///   @use 'sass-utils/hover';
 ///
 ///   a {
-///     @include hover.media {
+///     @include hover.any {
 ///       &:hover {
 ///         text-decoration: underline;
 ///       }
@@ -17,14 +17,14 @@
 ///   }
 ///
 /// @example css - css
-///   @media (hover) and (pointer) {
+///   @media (any-hover: hover) {
 ///     a:hover {
 ///       text-decoration: underline;
 ///     }
 ///   }
 ///
-@mixin media {
-  @media (hover) and (pointer) {
+@mixin any {
+  @media (any-hover: hover) {
     @content;
   }
 }
@@ -42,14 +42,14 @@
 ///   }
 ///
 /// @example css - css
-///   @media (hover) and (pointer) {
+///   @media (any-hover: hover) {
 ///     a:hover {
 ///       text-decoration: underline;
 ///     }
 ///   }
 ///
 @mixin this {
-  @include media {
+  @include any {
     &:hover {
       @content;
     }

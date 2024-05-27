@@ -5,11 +5,11 @@ $catch-errors: true;
 
 @include describe('hover') {
   @include describe('mixins') {
-    @include describe('media') {
+    @include describe('any') {
       @include it('hoverルールを返す') {
         @include output(false) {
           a {
-            @include mixins.media {
+            @include mixins.any {
               &:hover {
                 text-decoration: underline;
               }
