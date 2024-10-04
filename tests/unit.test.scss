@@ -47,9 +47,13 @@ $catch-errors: true;
 
     @include describe('vw()') {
       @include it('px値を%値に変換して返す') {
-        @include assert-equal(functions.vw(375px), 100vw);
-        @include assert-equal(functions.vw(100px, 100px), 100vw);
-        @include assert-equal(functions.vw(50, 100), 50vw);
+        @include assert-equal(functions.vw(375px), 100lvw);
+        @include assert-equal(functions.vw(100px, 100px), 100lvw);
+        @include assert-equal(functions.vw(50, 100), 50lvw);
+        @include assert-equal(functions.vw(100px, 100px, 'svw'), 100svw);
+        @include assert-equal(functions.vw(100px, 100px, 'lvw'), 100lvw);
+        @include assert-equal(functions.vw(100px, 100px, 'dvw'), 100dvw);
+        @include assert-equal(functions.vw(100px, 100px, 'vw'), 100vw);
       }
 
       @include it('数値以外を渡した場合はエラーを返す') {
@@ -66,9 +70,13 @@ $catch-errors: true;
 
     @include describe('vh()') {
       @include it('px値を%値に変換して返す') {
-        @include assert-equal(functions.vh(667px), 100vh);
-        @include assert-equal(functions.vh(100px, 100px), 100vh);
-        @include assert-equal(functions.vh(50, 100), 50vh);
+        @include assert-equal(functions.vh(667px), 100lvh);
+        @include assert-equal(functions.vh(100px, 100px), 100lvh);
+        @include assert-equal(functions.vh(50, 100), 50lvh);
+        @include assert-equal(functions.vh(100px, 100px, 'svh'), 100svh);
+        @include assert-equal(functions.vh(100px, 100px, 'lvh'), 100lvh);
+        @include assert-equal(functions.vh(100px, 100px, 'dvh'), 100dvh);
+        @include assert-equal(functions.vh(100px, 100px, 'vh'), 100vh);
       }
 
       @include it('数値以外を渡した場合はエラーを返す') {

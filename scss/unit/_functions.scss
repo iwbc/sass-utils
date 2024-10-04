@@ -47,34 +47,56 @@
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
 /// @param {number} $basis [$base-width] - 変換基準値 (単位は省略可)
+/// @param {string} $unit ['lvw'] - 単位（vw, svw, lvw, dvw）
 ///
 /// @return {number} - vw値
 ///
-@function vw($px, $basis: variables.$base-width) {
+@function vw($px, $basis: variables.$base-width, $unit: 'lvw') {
   @if meta.type-of($px) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()');
   } @else if meta.type-of($basis) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vw()');
   }
 
-  @return abs-to-rel($px, $basis, true) * 1vw;
+  @if $unit == 'lvw' {
+    @return abs-to-rel($px, $basis, true) * 1lvw;
+  } @else if $unit == 'svw' {
+    @return abs-to-rel($px, $basis, true) * 1svw;
+  } @else if $unit == 'dvw' {
+    @return abs-to-rel($px, $basis, true) * 1dvw;
+  } @else if $unit == 'vw' {
+    @return abs-to-rel($px, $basis, true) * 1vw;
+  } @else {
+    @return throw.error('Invalid `#{$unit}` unit. Choose a vw, svw, lvw, or dvw instead.', 'unit.vw()');
+  }
 }
 
 /// px値をvh値に変換する
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
 /// @param {number} $basis [$base-height] - 変換基準値 (単位は省略可)
+/// @param {string} $unit ['lvh'] - 単位（vh, svh, lvh, dvh）
 ///
 /// @return {number} - vh値
 ///
-@function vh($px, $basis: variables.$base-height) {
+@function vh($px, $basis: variables.$base-height, $unit: 'lvh') {
   @if meta.type-of($px) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()');
   } @else if meta.type-of($basis) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vh()');
   }
 
-  @return abs-to-rel($px, $basis, true) * 1vh;
+  @if $unit == 'lvh' {
+    @return abs-to-rel($px, $basis, true) * 1lvh;
+  } @else if $unit == 'svh' {
+    @return abs-to-rel($px, $basis, true) * 1svh;
+  } @else if $unit == 'dvh' {
+    @return abs-to-rel($px, $basis, true) * 1dvh;
+  } @else if $unit == 'vh' {
+    @return abs-to-rel($px, $basis, true) * 1vh;
+  } @else {
+    @return throw.error('Invalid `#{$unit}` unit. Choose a vh, svh, lvh, or dvh instead.', 'unit.vh()');
+  }
 }
 
 ///
