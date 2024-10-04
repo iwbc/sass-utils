@@ -4,3 +4,9 @@
 
 /// 基準フォントサイズ
 $base-font-size: 16px !default;
+
+/// vw変換の基準値
+$base-width: 375px !default;
+
+/// vh変換の基準値
+$base-height: 667px !default;

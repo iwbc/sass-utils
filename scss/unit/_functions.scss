@@ -46,11 +46,11 @@
 /// px値をvw値に変換する
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
-/// @param {number} $basis - 変換基準値 (単位は省略可)
+/// @param {number} $basis [$base-width] - 変換基準値 (単位は省略可)
 ///
 /// @return {number} - vw値
 ///
-@function vw($px, $basis) {
+@function vw($px, $basis: variables.$base-width) {
   @if meta.type-of($px) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()');
   } @else if meta.type-of($basis) != 'number' {
@@ -63,11 +63,11 @@
 /// px値をvh値に変換する
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
-/// @param {number} $basis - 変換基準値 (単位は省略可)
+/// @param {number} $basis [$base-height] - 変換基準値 (単位は省略可)
 ///
 /// @return {number} - vh値
 ///
-@function vh($px, $basis) {
+@function vh($px, $basis: variables.$base-height) {
   @if meta.type-of($px) != 'number' {
     @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()');
   } @else if meta.type-of($basis) != 'number' {
