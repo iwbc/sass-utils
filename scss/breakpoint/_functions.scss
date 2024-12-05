@@ -34,7 +34,7 @@
 
   @return if(
     $index != null and $index < list.length($keys),
-    map.get(variables.$breakpoints, nth($keys, $index + 1)),
+    map.get(variables.$breakpoints, list.nth($keys, $index + 1)),
     null
   );
 }
