@@ -1,0 +1,25 @@
+////
+/// @group easing
+////
+
+@use 'sass:map';
+@use 'sass-true/sass/throw';
+@use './variables';
+
+///
+/// 指定したキーのeasing functionを取得する
+///
+/// @param {string} $key - $easingsのいずれかのキー
+///
+/// @return {string} - easing function
+///
+@function get($key) {
+  @if not map.has-key(variables.$easings, $key) {
+    @return throw.error(
+      'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$easings)}.',
+      'easing.get()'
+    );
+  }
+
+  @return map.get(variables.$easings, $key);
+}

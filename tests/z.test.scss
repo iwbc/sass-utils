@@ -16,7 +16,7 @@ $catch-errors: true;
         @include assert-equal(functions.get('overlay', 1), 10001);
       }
 
-      @include it('未定義のキーエラー') {
+      @include it('エラー 未定義のキー') {
         @include assert-equal(
           functions.get('unknown'),
           'ERROR [z.get()]: Invalid key, `unknown` is not defined. Choose one of overlay.'

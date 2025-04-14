@@ -1,0 +1,26 @@
+@use 'true' as *;
+@use '../scss/easing/variables' with (
+  $easings: (
+    'ease-in-sine': 'cubic-bezier(0.47, 0, 0.745, 0.715)',
+  )
+);
+@use '../scss/easing/functions';
+
+$catch-errors: true;
+
+@include describe('easing') {
+  @include describe('functions') {
+    @include describe('get()') {
+      @include it('easing functionを返す') {
+        @include assert-equal(functions.get('ease-in-sine'), 'cubic-bezier(0.47, 0, 0.745, 0.715)');
+      }
+
+      @include it('エラー 未定義のキー') {
+        @include assert-equal(
+          functions.get('unknown'),
+          'ERROR [easing.get()]: Invalid key, `unknown` is not defined. Choose one of ease-in-sine.'
+        );
+      }
+    }
+  }
+}

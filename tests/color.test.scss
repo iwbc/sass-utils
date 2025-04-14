@@ -15,7 +15,7 @@ $catch-errors: true;
         @include assert-equal(functions.get('black'), #000);
       }
 
-      @include it('未定義の色エラー') {
+      @include it('エラー 未定義の色') {
         @include assert-equal(
           functions.get('unknown'),
           'ERROR [color.get()]: Invalid key, `unknown` is not defined. Choose one of black.'
