@@ -7,7 +7,7 @@
     "url": "git+https://github.com/iwbc/sass-utils.git"
   },
   "homepage": "https://iwbc.github.io/sass-utils/",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "engines": {
     "node": ">=18.17.0"
   },
