@@ -1,13 +1,18 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>@iwbc/sass-utils - v0.5.1</title><link rel="stylesheet" href="assets/css/main.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="@iwbc/sass-utils - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="Release the docs!"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title"><a href="https://iwbc.github.io/sass-utils/">@iwbc/sass-utils - v0.5.1</a></h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="breakpoint"><a href="#breakpoint">breakpoint</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="breakpoint-variable"><a href="#breakpoint-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="breakpoints" data-type="variable"><a href="#breakpoint-variable-breakpoints">breakpoints</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="breakpoint-mixin"><a href="#breakpoint-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="min" data-type="mixin"><a href="#breakpoint-mixin-min">min</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="min-legacy" data-type="mixin"><a href="#breakpoint-mixin-min-legacy">min-legacy</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="max" data-type="mixin"><a href="#breakpoint-mixin-max">max</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="max-legacy" data-type="mixin"><a href="#breakpoint-mixin-max-legacy">max-legacy</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="only" data-type="mixin"><a href="#breakpoint-mixin-only">only</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="between" data-type="mixin"><a href="#breakpoint-mixin-between">between</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="color"><a href="#color">color</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-variable"><a href="#color-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="color" data-name="colors" data-type="variable"><a href="#color-variable-colors">colors</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-function"><a href="#color-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="color" data-name="get" data-type="function"><a href="#color-function-get">get</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="easing"><a href="#easing">easing</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="easing-variable"><a href="#easing-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="easing" data-name="easings" data-type="variable"><a href="#easing-variable-easings">easings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="easing-function"><a href="#easing-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="easing" data-name="get" data-type="function"><a href="#easing-function-get">get</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="hover"><a href="#hover">hover</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="hover-mixin"><a href="#hover-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="hover" data-name="any" data-type="mixin"><a href="#hover-mixin-any">any</a></li><li class="sidebar__item sassdoc__item" data-group="hover" data-name="this" data-type="mixin"><a href="#hover-mixin-this">this</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="unit"><a href="#unit">unit</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="unit-variable"><a href="#unit-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-font-size" data-type="variable"><a href="#unit-variable-base-font-size">base-font-size</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-width" data-type="variable"><a href="#unit-variable-base-width">base-width</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-height" data-type="variable"><a href="#unit-variable-base-height">base-height</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="unit-function"><a href="#unit-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="unit" data-name="rem" data-type="function"><a href="#unit-function-rem">rem</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="per" data-type="function"><a href="#unit-function-per">per</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="vw" data-type="function"><a href="#unit-function-vw">vw</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="vh" data-type="function"><a href="#unit-function-vh">vh</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="strip" data-type="function"><a href="#unit-function-strip">strip</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="abs-to-rel" data-type="function"><a href="#unit-function-abs-to-rel">abs-to-rel</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="z"><a href="#z">z</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="z-variable"><a href="#z-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="z" data-name="z-indexes" data-type="variable"><a href="#z-variable-z-indexes">z-indexes</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="z-function"><a href="#z-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="z" data-name="get" data-type="function"><a href="#z-function-get">get</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="breakpoint"><div class="container">breakpoint</div></h1><section class="main__sub-section" id="breakpoint-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="breakpoint-variable-breakpoints"><h3 class="item__heading"><a class="item__name" href="#variable-breakpoints">breakpoints</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$breakpoints: (
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>@iwbc/sass-utils - v1.0.0</title><link rel="stylesheet" href="assets/css/main.css"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,700" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible"><!-- Open Graph tags --><meta property="og:title" content="@iwbc/sass-utils - SassDoc"><meta property="og:type" content="website"><meta property="og:description" content="Release the docs!"><!-- Thanks to Sass-lang.com for the icons --><link href="assets/images/favicon.png" rel="shortcut icon"></head><body><aside class="sidebar" role="nav"><div class="sidebar__header"><h1 class="sidebar__title"><a href="https://iwbc.github.io/sass-utils/">@iwbc/sass-utils - v1.0.0</a></h1></div><div class="sidebar__body"><button type="button" class="btn-toggle js-btn-toggle" data-alt="Open all">Close all</button><p class="sidebar__item sidebar__item--heading" data-slug="breakpoint"><a href="#breakpoint">breakpoint</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="breakpoint-variable"><a href="#breakpoint-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="breakpoints" data-type="variable"><a href="#breakpoint-variable-breakpoints">breakpoints</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="print-min-width" data-type="variable"><a href="#breakpoint-variable-print-min-width">print-min-width</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="breakpoint-mixin"><a href="#breakpoint-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="min" data-type="mixin"><a href="#breakpoint-mixin-min">min</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="max" data-type="mixin"><a href="#breakpoint-mixin-max">max</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="only" data-type="mixin"><a href="#breakpoint-mixin-only">only</a></li><li class="sidebar__item sassdoc__item" data-group="breakpoint" data-name="between" data-type="mixin"><a href="#breakpoint-mixin-between">between</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="color"><a href="#color">color</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-variable"><a href="#color-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="color" data-name="colors" data-type="variable"><a href="#color-variable-colors">colors</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="color-function"><a href="#color-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="color" data-name="get" data-type="function"><a href="#color-function-get">get</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="easing"><a href="#easing">easing</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="easing-variable"><a href="#easing-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="easing" data-name="easings" data-type="variable"><a href="#easing-variable-easings">easings</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="easing-function"><a href="#easing-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="easing" data-name="get" data-type="function"><a href="#easing-function-get">get</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="hover"><a href="#hover">hover</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="hover-mixin"><a href="#hover-mixin">mixins</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="hover" data-name="any" data-type="mixin"><a href="#hover-mixin-any">any</a></li><li class="sidebar__item sassdoc__item" data-group="hover" data-name="this" data-type="mixin"><a href="#hover-mixin-this">this</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="unit"><a href="#unit">unit</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="unit-variable"><a href="#unit-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-font-size" data-type="variable"><a href="#unit-variable-base-font-size">base-font-size</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-width" data-type="variable"><a href="#unit-variable-base-width">base-width</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="base-height" data-type="variable"><a href="#unit-variable-base-height">base-height</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="unit-function"><a href="#unit-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="unit" data-name="rem" data-type="function"><a href="#unit-function-rem">rem</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="per" data-type="function"><a href="#unit-function-per">per</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="vw" data-type="function"><a href="#unit-function-vw">vw</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="vh" data-type="function"><a href="#unit-function-vh">vh</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="strip" data-type="function"><a href="#unit-function-strip">strip</a></li><li class="sidebar__item sassdoc__item" data-group="unit" data-name="abs-to-rel" data-type="function"><a href="#unit-function-abs-to-rel">abs-to-rel</a></li></ul></div><p class="sidebar__item sidebar__item--heading" data-slug="z"><a href="#z">z</a></p><div><p class="sidebar__item sidebar__item--sub-heading" data-slug="z-variable"><a href="#z-variable">variables</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="z" data-name="z-indexes" data-type="variable"><a href="#z-variable-z-indexes">z-indexes</a></li></ul><p class="sidebar__item sidebar__item--sub-heading" data-slug="z-function"><a href="#z-function">functions</a></p><ul class="list-unstyled"><li class="sidebar__item sassdoc__item" data-group="z" data-name="get" data-type="function"><a href="#z-function-get">get</a></li></ul></div></div></aside><article class="main" role="main"><header class="header" role="banner"><div class="container"><div class="sassdoc__searchbar searchbar"><label for="js-search-input" class="visually-hidden">Search</label><div class="searchbar__form" id="js-search"><input name="search" type="search" class="searchbar__field" autocomplete="off" autofocus id="js-search-input" placeholder="Search"><ul class="searchbar__suggestions" id="js-search-suggestions"></ul></div></div></div></header><section class="main__section"><h1 class="main__heading" id="breakpoint"><div class="container">breakpoint</div></h1><section class="main__sub-section" id="breakpoint-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="breakpoint-variable-breakpoints"><h3 class="item__heading"><a class="item__name" href="#variable-breakpoints">breakpoints</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$breakpoints: (
   &#39;sp&#39;: 0,
   &#39;tab&#39;: 768px,
   &#39;pc&#39;: 1200px,
-) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>ブレークポイント</p></div></section></section><section class="main__sub-section" id="breakpoint-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="breakpoint-mixin-min"><h3 class="item__heading"><a class="item__name" href="#mixin-min">min</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min($key-value, $type: null) { 
+) !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>ブレークポイント</p></div></section><section class="main__item container item" id="breakpoint-variable-print-min-width"><h3 class="item__heading"><a class="item__name" href="#variable-print-min-width">print-min-width</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$print-min-width: 768px !default;</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>印刷対象にするメディアクエリの最低幅<br>各mixinのmin-widthに相当する値がここで指定した値以上の場合、ブレークポイントに関係なく印刷時にスタイルが適用される<br>ただし個別に印刷時にスタイルを適用するかどうかを指定した場合はその設定が優先される<br>この機能を無効化する場合はnullを指定する</p></div></section></section><section class="main__sub-section" id="breakpoint-mixin"><h2 class="main__heading--secondary"><div class="container">mixins</div></h2><section class="main__item container item" id="breakpoint-mixin-min"><h3 class="item__heading"><a class="item__name" href="#mixin-min">min</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min($key-value, $print: null) { 
   $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
+  $print: functions.print($min, $print);
 
   @if unit.strip($min) != 0 {
-    @if $type {
-      @media #{$type} and ($min &lt;= width) {
+    @if $print == true {
+      @media print, ($min &lt;= width) {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen and ($min &lt;= width) {
         @content;
       }
     } @else {
@@ -16,67 +21,90 @@
       }
     }
   } @else {
-    @content;
+    @if $print == true {
+      @media print {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen {
+        @content;
+      }
+    } @else {
+      @content;
+    }
   }
- }" data-collapsed="@mixin min($key-value, $type: null) { ... }"><code>@mixin min($key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以上の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
-  $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
+ }" data-collapsed="@mixin min($key-value, $print: null) { ... }"><code>@mixin min($key-value, $print: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以上の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$print</code></th><td data-label="desc"><p>印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる</p></td><td data-label="type"><code>Boolean</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+  $breakpoints: (&#39;sp&#39;: 0, &#39;lgsp&#39;: 420px, &#39;tab&#39;: 768px),
+  $print-min-width: 768px
 );
 
-.element {
+.lgsp {
+  @include breakpoint.min(&#39;lgsp&#39;) {
+    width: 50%;
+  }
+}
+
+.tab {
   @include breakpoint.min(&#39;tab&#39;) {
     width: 50%;
   }
 }
 
-.element2 {
+.any {
   @include breakpoint.min(1024px) {
-    width: 100%;
-  }
-}
-
-.mediatype {
-  @include breakpoint.min(&#39;tab&#39;, &#39;screen, print&#39;) {
-    color: #f00;
-  }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (768px &lt;= width) {
-  .element {
     width: 50%;
   }
 }
 
-@media (1024px &lt;= width) {
-  .element2 {
-    width: 100%;
+.print {
+  @include breakpoint.min(&#39;lgsp&#39;, true) {
+    width: 50%;
   }
 }
 
-@media screen, print and (768px &lt;= width) {
-  .mediatype {
-    color: #f00;
+.no-print {
+  @include breakpoint.min(&#39;tab&#39;, false) {
+    width: 50%;
   }
-}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-min-legacy"><h3 class="item__heading"><a class="item__name" href="#mixin-min-legacy">min-legacy</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin min-legacy() { 
-  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (420px &lt;= width) {
+  .lgsp {
+    width: 50%;
+  }
+}
 
-  @if unit.strip($min) != 0 {
-    @if $type {
-      @media #{$type} and (min-width: $min) {
-        @content;
-      }
-    } @else {
-      @media (min-width: $min) {
-        @content;
-      }
-    }
-  } @else {
-    @content;
+@media print, (768px &lt;= width) {
+  .tab {
+    width: 50%;
   }
- }" data-collapsed="@mixin min-legacy() { ... }"><code>@mixin min-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>min-width版 将来的に削除</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="breakpoint-mixin-max"><h3 class="item__heading"><a class="item__name" href="#mixin-max">max</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin max($key-value, $type: null) { 
+}
+
+@media print, (1024px &lt;= width) {
+  .any {
+    width: 50%;
+  }
+}
+
+@media print, (420px &lt;= width) {
+  .print {
+    width: 50%;
+  }
+}
+
+@media screen and (768px &lt;= width) {
+  .no-print {
+    width: 50%;
+  }
+}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-max"><h3 class="item__heading"><a class="item__name" href="#mixin-max">max</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin max($key-value, $print: null) { 
   @if map.has-key(variables.$breakpoints, $key-value) {
     $next: functions.get-next-value($key-value);
 
     @if $next {
-      @if $type {
-        @media #{$type} and (width &lt; $next) {
+      @if $print == true {
+        @media print, (width &lt; $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and (width &lt; $next) {
           @content;
         }
       } @else {
@@ -85,11 +113,25 @@
         }
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   } @else {
-    @if $type {
-      @media #{$type} and (width &lt;= $key-value) {
+    @if $print == true {
+      @media print, (width &lt;= $key-value) {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen and (width &lt;= $key-value) {
         @content;
       }
     } @else {
@@ -98,78 +140,69 @@
       }
     }
   }
- }" data-collapsed="@mixin max($key-value, $type: null) { ... }"><code>@mixin max($key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以下の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
-  $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
+ }" data-collapsed="@mixin max($key-value, $print: null) { ... }"><code>@mixin max($key-value, $print: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイント以下の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key-value</code></th><td data-label="desc"><p>$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$print</code></th><td data-label="desc"><p>印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる</p></td><td data-label="type"><code>Boolean</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+  $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px),
+  $print-min-width: 768px
 );
 
-.element {
-  @include breakpoint.max(&#39;tab&#39;) {
+.sp {
+  @include breakpoint.max(&#39;sp&#39;) {
     width: 50%;
   }
 }
 
-.element2 {
-  @include breakpoint.max(600px) {
-    width: 100%;
-  }
-}
-
-.mediatype {
-  @include breakpoint.max(&#39;tab&#39;, &#39;screen, print&#39;) {
-    color: #f00;
-  }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (width &lt; 1200px) {
-  .element {
+.any {
+  @include breakpoint.max(1200px) {
     width: 50%;
   }
 }
 
-@media (width &lt;= 600px) {
-  .element2 {
-    width: 100%;
+.print {
+  @include breakpoint.max(&#39;sp&#39;, true) {
+    width: 50%;
   }
 }
 
-@media screen, print and (width &lt; 1200px) {
-  .mediatype {
-    color: #f00;
+.no-print {
+  @include breakpoint.max(&#39;sp&#39;, false) {
+    width: 50%;
   }
-}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-max-legacy"><h3 class="item__heading"><a class="item__name" href="#mixin-max-legacy">max-legacy</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin max-legacy() { 
-  @if map.has-key(variables.$breakpoints, $key) {
-    $next: functions.get-next-value($key);
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (width &lt; 768px) {
+  .sp {
+    width: 50%;
+  }
+}
 
-    @if $next {
-      @if $type {
-        @media #{$type} and (max-width: $next - 0.02px) {
-          @content;
-        }
-      } @else {
-        @media (max-width: $next - 0.02px) {
-          @content;
-        }
-      }
-    } @else {
-      @content;
-    }
-  } @else {
-    @if $type {
-      @media #{$type} and (max-width: $key-value - 0.02px) {
-        @content;
-      }
-    } @else {
-      @media (max-width: $key-value - 0.02px) {
-        @content;
-      }
-    }
+@media (width &lt;= 1200px) {
+  .any {
+    width: 50%;
   }
- }" data-collapsed="@mixin max-legacy() { ... }"><code>@mixin max-legacy() { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>max-width版 将来的に削除</p></div><h3 class="item__sub-heading">Parameters</h3><p>None.</p></section><section class="main__item container item" id="breakpoint-mixin-only"><h3 class="item__heading"><a class="item__name" href="#mixin-only">only</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin only($key, $type: null) { 
+}
+
+@media print, (width &lt; 768px) {
+  .print {
+    width: 50%;
+  }
+}
+
+@media screen and (width &lt; 768px) {
+  .no-print {
+    width: 50%;
+  }
+}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-only"><h3 class="item__heading"><a class="item__name" href="#mixin-only">only</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin only($key, $print: null) { 
   @if map.has-key(variables.$breakpoints, $key) {
     $min: functions.get-value($key);
     $next: functions.get-next-value($key);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min &lt;= width &lt; $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min &lt;= width &lt; $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min &lt;= width &lt; $next) {
           @content;
         }
       } @else {
@@ -178,15 +211,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($key, $type) {
+      @include max($key, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($key, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($key, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -194,39 +239,57 @@
   @else {
     @error &quot;Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$breakpoints)}.&quot;;
   }
- }" data-collapsed="@mixin only($key, $type: null) { ... }"><code>@mixin only($key, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイントの場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>$breakpointsのキー</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+ }" data-collapsed="@mixin only($key, $print: null) { ... }"><code>@mixin only($key, $print: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定したブレークポイントの場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>$breakpointsのキー</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$print</code></th><td data-label="desc"><p>印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる</p></td><td data-label="type"><code>Boolean</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: (&#39;sp&#39;: 0, &#39;tab&#39;: 768px, &#39;pc&#39;: 1200px)
 );
 
-.element {
+.tab {
   @include breakpoint.only(&#39;tab&#39;) {
     width: 50%;
   }
 }
 
-.mediatype {
-  @include breakpoint.only(&#39;tab&#39;, &#39;screen, print&#39;) {
-    color: #f00;
-  }
-}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (768px &lt;= width &lt; 1200px) {
-  .element {
+.print {
+  @include breakpoint.only(&#39;tab&#39;, true) {
     width: 50%;
   }
 }
 
-@media screen, print and (768px &lt;= width &lt; 1200px) {
-  .mediatype {
-    color: #f00;
+.no-print {
+  @include breakpoint.only(&#39;tab&#39;, false) {
+    width: 50%;
   }
-}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-between"><h3 class="item__heading"><a class="item__name" href="#mixin-between">between</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin between($min-key-value, $max-key-value, $type: null) { 
+}</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (768px &lt;= width &lt; 1200px) {
+  .tab {
+    width: 50%;
+  }
+}
+
+@media print, (768px &lt;= width &lt; 1200px) {
+  .print {
+    width: 50%;
+  }
+}
+
+@media screen and (768px &lt;= width &lt; 1200px) {
+  .no-print {
+    width: 50%;
+  }
+}</code></pre></div></section><section class="main__item container item" id="breakpoint-mixin-between"><h3 class="item__heading"><a class="item__name" href="#mixin-between">between</a></h3><div class="item__code-wrapper"><pre class="item__code item__code--togglable language-scss" data-current-state="collapsed" data-expanded="@mixin between($min-key-value, $max-key-value, $print: null) { 
   // $min-key-valueと$max-key-valueがキーの場合
   @if map.has-key(variables.$breakpoints, $min-key-value) and map.has-key(variables.$breakpoints, $max-key-value) {
     $min: functions.get-value($min-key-value);
     $next: functions.get-next-value($max-key-value);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min &lt;= width &lt; $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min &lt;= width &lt; $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min &lt;= width &lt; $next) {
           @content;
         }
       } @else {
@@ -235,15 +298,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($max-key-value, $type) {
+      @include max($max-key-value, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($min-key-value, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($min-key-value, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -253,8 +328,14 @@
     $max: $max-key-value;
 
     @if unit.strip($min) != 0 {
-      @if $type {
-        @media #{$type} and ($min &lt;= width &lt;= $max) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min &lt;= width &lt;= $max) {
           @content;
         }
       } @else {
@@ -263,7 +344,7 @@
         }
       }
     } @else {
-      @include max($max, $type) {
+      @include max($max, $print) {
         @content;
       }
     }
@@ -275,8 +356,14 @@
     $next: functions.get-next-value($max-key-value);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min &lt;= width &lt; $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min &lt;= width &lt; $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min &lt;= width &lt; $next) {
           @content;
         }
       } @else {
@@ -285,15 +372,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($max-key-value, $type) {
+      @include max($max-key-value, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($min, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($min, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -303,8 +402,14 @@
     $max: $max-key-value;
 
     @if unit.strip($min) != 0 {
-      @if $type {
-        @media #{$type} and ($min &lt;= width &lt;= $max) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min &lt;= width &lt;= $max) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min &lt;= width &lt;= $max) {
           @content;
         }
       } @else {
@@ -313,12 +418,12 @@
         }
       }
     } @else {
-      @include max($max, $type) {
+      @include max($max, $print) {
         @content;
       }
     }
   }
- }" data-collapsed="@mixin between($min-key-value, $max-key-value, $type: null) { ... }"><code>@mixin between($min-key-value, $max-key-value, $type: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定した2つのブレークポイントの範囲内の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$min-key-value</code></th><td data-label="desc"><p>適用したい最小の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$max-key-value</code></th><td data-label="desc"><p>適用したい最大の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$type</code></th><td data-label="desc"><p>メディアタイプ</p></td><td data-label="type"><code>String</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
+ }" data-collapsed="@mixin between($min-key-value, $max-key-value, $print: null) { ... }"><code>@mixin between($min-key-value, $max-key-value, $print: null) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>幅が指定した2つのブレークポイントの範囲内の場合にスタイルを適用する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$min-key-value</code></th><td data-label="desc"><p>適用したい最小の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$max-key-value</code></th><td data-label="desc"><p>適用したい最大の$breakpointsのキーまたは幅の値</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$print</code></th><td data-label="desc"><p>印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる</p></td><td data-label="type"><code>Boolean</code> or <code>Null</code></td><td data-label="default"><code>null</code></td></tr></tbody></table><h3 class="item__sub-heading">Example</h3><div class="item__example example"><div class="example__description"><p>scss</p></div><pre class="example__code language-scss"><code>@use &#39;sass-utils/breakpoint&#39; with (
   $breakpoints: $breakpoints: (
     &#39;xs&#39;: 0,
     &#39;sm&#39;: 480px,
@@ -328,37 +433,49 @@
   )
 );
 
-.element {
+.sm-lg {
   @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;) {
     width: 50%;
   }
 }
 
-.element2 {
+.any {
   @include breakpoint.between(1024px, 1440px) {
     width: 50%;
   }
 }
 
-.mediatype {
-  @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;, &#39;screen, print&#39;) {
-    color: #f00;
+.print {
+  @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;, true) {
+    width: 50%;
+  }
+}
+
+.no-print {
+  @include breakpoint.between(&#39;sm&#39;, &#39;lg&#39;, false) {
+    width: 50%;
   }
 }</code></pre></div><div class="item__example example"><div class="example__description"><p>css</p></div><pre class="example__code language-css"><code>@media (480px &lt;= width &lt; 1200px) {
-  .element {
+  .sm-lg {
     width: 50%;
   }
 }
 
 @media (1024px &lt;= width &lt;= 1440px) {
-  .element2 {
+  .any {
     width: 50%;
   }
 }
 
-@media screen, print and (480px &lt;= width &lt; 1200px) {
-  .mediatype {
-    color: #f00;
+@media print, (480px &lt;= width &lt; 1200px) {
+  .print {
+    width: 50%;
+  }
+}
+
+@media screen and (480px &lt;= width &lt; 1200px) {
+  .no-print {
+    width: 50%;
   }
 }</code></pre></div></section></section></section><section class="main__section"><h1 class="main__heading" id="color"><div class="container">color</div></h1><section class="main__sub-section" id="color-variable"><h2 class="main__heading--secondary"><div class="container">variables</div></h2><section class="main__item container item" id="color-variable-colors"><h3 class="item__heading"><a class="item__name" href="#variable-colors">colors</a></h3><div class="item__code-wrapper"><pre class="item__code language-scss"><code>$colors: (
   &#39;black&#39;: #000,
@@ -521,4 +638,4 @@ a {
   }
 
   @return map.get(variables.$z-indexes, $key) + $index;
- }" data-collapsed="@function get($key, $index: 0) { ... }"><code>@function get($key, $index: 0) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>指定した名前のz-index値を取得する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>$z-indexesのいずれかのキー</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$index</code></th><td data-label="desc"><p>ここで指定した値を加算した結果を出力する（負の値の場合は減算）</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>0</code></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code> &mdash;<p>z-index値</p></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <a class="project-info__name" href="https://iwbc.github.io/sass-utils/">@iwbc/sass-utils</a><!-- Version --> <span class="project-info__version">- v0.5.1</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
+ }" data-collapsed="@function get($key, $index: 0) { ... }"><code>@function get($key, $index: 0) { ... }</code></pre></div><h3 class="item__sub-heading">Description</h3><div class="item__description"><p>指定した名前のz-index値を取得する</p></div><h3 class="item__sub-heading">Parameters</h3><table class="item__parameters"><thead><tr><th scope="col"><span class="visually-hidden">parameter </span>Name</th><th scope="col"><span class="visually-hidden">parameter </span>Description</th><th scope="col"><span class="visually-hidden">parameter </span>Type</th><th scope="col"><span class="visually-hidden">parameter </span>Default value</th></tr></thead><tbody><tr class="item__parameter"><th scope="row" data-label="name"><code>$key</code></th><td data-label="desc"><p>$z-indexesのいずれかのキー</p></td><td data-label="type"><code>String</code></td><td data-label="default">&mdash;<span class="visually-hidden"> none</span></td></tr><tr class="item__parameter"><th scope="row" data-label="name"><code>$index</code></th><td data-label="desc"><p>ここで指定した値を加算した結果を出力する（負の値の場合は減算）</p></td><td data-label="type"><code>Number</code></td><td data-label="default"><code>0</code></td></tr></tbody></table><h3 class="item__sub-heading">Returns</h3><div class="item__description item__description--inline"><code>Number</code> &mdash;<p>z-index値</p></div></section></section></section><footer class="footer" role="contentinfo"><div class="container"><div class="footer__project-info project-info"><!-- Name and URL --> <a class="project-info__name" href="https://iwbc.github.io/sass-utils/">@iwbc/sass-utils</a><!-- Version --> <span class="project-info__version">- v1.0.0</span><!-- License --> <span class="project-info__license">, under MIT</span></div><a class="footer__watermark" href="http://sassdoc.com"><img src="assets/images/logo_light_inline.svg" alt="SassDoc Logo"></a></div></footer></article><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script><script src="assets/js/main.min.js"></script></body></html>
