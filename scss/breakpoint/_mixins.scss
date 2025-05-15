@@ -11,56 +11,86 @@
 /// 幅が指定したブレークポイント以上の場合にスタイルを適用する
 ///
 /// @param {string} $key-value - $breakpointsのキーまたは幅の値
-/// @param {string | null} $type [null] - メディアタイプ
+/// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
 ///   @use 'sass-utils/breakpoint' with (
-///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
+///     $breakpoints: ('sp': 0, 'lgsp': 420px, 'tab': 768px),
+///     $print-min-width: 768px
 ///   );
 ///
-///   .element {
+///   .lgsp {
+///     @include breakpoint.min('lgsp') {
+///       width: 50%;
+///     }
+///   }
+///
+///   .tab {
 ///     @include breakpoint.min('tab') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   .element2 {
+///   .any {
 ///     @include breakpoint.min(1024px) {
-///       width: 100%;
-///     }
-///   }
-///
-///   .mediatype {
-///     @include breakpoint.min('tab', 'screen, print') {
-///       color: #f00;
-///     }
-///   }
-///
-/// @example css - css
-///   @media (768px <= width) {
-///     .element {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media (1024px <= width) {
-///     .element2 {
-///       width: 100%;
+///   .print {
+///     @include breakpoint.min('lgsp', true) {
+///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media screen, print and (768px <= width) {
-///     .mediatype {
-///       color: #f00;
+///   .no-print {
+///     @include breakpoint.min('tab', false) {
+///       width: 50%;
 ///     }
 ///   }
 ///
-@mixin min($key-value, $type: null) {
+/// @example css - css
+///   @media (420px <= width) {
+///     .lgsp {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media print, (768px <= width) {
+///     .tab {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media print, (1024px <= width) {
+///     .any {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media print, (420px <= width) {
+///     .print {
+///       width: 50%;
+///     }
+///   }
+///
+///   @media screen and (768px <= width) {
+///     .no-print {
+///       width: 50%;
+///     }
+///   }
+///
+@mixin min($key-value, $print: null) {
   $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
+  $print: functions.print($min, $print);
 
   @if unit.strip($min) != 0 {
-    @if $type {
-      @media #{$type} and ($min <= width) {
+    @if $print == true {
+      @media print, ($min <= width) {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen and ($min <= width) {
         @content;
       }
     } @else {
@@ -69,27 +99,17 @@
       }
     }
   } @else {
-    @content;
-  }
-}
-
-/// min-width版
-/// 将来的に削除
-@mixin min-legacy($key-value, $type: null) {
-  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
-
-  @if unit.strip($min) != 0 {
-    @if $type {
-      @media #{$type} and (min-width: $min) {
+    @if $print == true {
+      @media print {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen {
         @content;
       }
     } @else {
-      @media (min-width: $min) {
-        @content;
-      }
+      @content;
     }
-  } @else {
-    @content;
   }
 }
 
@@ -97,57 +117,74 @@
 /// 幅が指定したブレークポイント以下の場合にスタイルを適用する
 ///
 /// @param {string} $key-value - $breakpointsのキーまたは幅の値
-/// @param {string | null} $type [null] - メディアタイプ
+/// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
 ///   @use 'sass-utils/breakpoint' with (
-///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
+///     $breakpoints: ('sp': 0, 'tab': 768px),
+///     $print-min-width: 768px
 ///   );
 ///
-///   .element {
-///     @include breakpoint.max('tab') {
+///   .sp {
+///     @include breakpoint.max('sp') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   .element2 {
-///     @include breakpoint.max(600px) {
-///       width: 100%;
+///   .any {
+///     @include breakpoint.max(1200px) {
+///       width: 50%;
 ///     }
 ///   }
 ///
-///   .mediatype {
-///     @include breakpoint.max('tab', 'screen, print') {
-///       color: #f00;
+///   .print {
+///     @include breakpoint.max('sp', true) {
+///       width: 50%;
+///     }
+///   }
+///
+///   .no-print {
+///     @include breakpoint.max('sp', false) {
+///       width: 50%;
 ///     }
 ///   }
 ///
 /// @example css - css
-///   @media (width < 1200px) {
-///     .element {
+///   @media (width < 768px) {
+///     .sp {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media (width <= 600px) {
-///     .element2 {
-///       width: 100%;
+///   @media (width <= 1200px) {
+///     .any {
+///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media screen, print and (width < 1200px) {
-///     .mediatype {
-///       color: #f00;
+///   @media print, (width < 768px) {
+///     .print {
+///       width: 50%;
 ///     }
 ///   }
 ///
-@mixin max($key-value, $type: null) {
+///   @media screen and (width < 768px) {
+///     .no-print {
+///       width: 50%;
+///     }
+///   }
+///
+@mixin max($key-value, $print: null) {
   @if map.has-key(variables.$breakpoints, $key-value) {
     $next: functions.get-next-value($key-value);
 
     @if $next {
-      @if $type {
-        @media #{$type} and (width < $next) {
+      @if $print == true {
+        @media print, (width < $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and (width < $next) {
           @content;
         }
       } @else {
@@ -156,11 +193,25 @@
         }
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   } @else {
-    @if $type {
-      @media #{$type} and (width <= $key-value) {
+    @if $print == true {
+      @media print, (width <= $key-value) {
+        @content;
+      }
+    } @else if $print == false {
+      @media screen and (width <= $key-value) {
         @content;
       }
     } @else {
@@ -171,82 +222,68 @@
   }
 }
 
-/// max-width版
-/// 将来的に削除
-@mixin max-legacy($key, $type: null) {
-  @if map.has-key(variables.$breakpoints, $key) {
-    $next: functions.get-next-value($key);
-
-    @if $next {
-      @if $type {
-        @media #{$type} and (max-width: $next - 0.02px) {
-          @content;
-        }
-      } @else {
-        @media (max-width: $next - 0.02px) {
-          @content;
-        }
-      }
-    } @else {
-      @content;
-    }
-  } @else {
-    @if $type {
-      @media #{$type} and (max-width: $key-value - 0.02px) {
-        @content;
-      }
-    } @else {
-      @media (max-width: $key-value - 0.02px) {
-        @content;
-      }
-    }
-  }
-}
-
 ///
 /// 幅が指定したブレークポイントの場合にスタイルを適用する
 ///
 /// @param {string} $key - $breakpointsのキー
-/// @param {string | null} $type [null] - メディアタイプ
+/// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
 ///   @use 'sass-utils/breakpoint' with (
 ///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
 ///   );
 ///
-///   .element {
+///   .tab {
 ///     @include breakpoint.only('tab') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   .mediatype {
-///     @include breakpoint.only('tab', 'screen, print') {
-///       color: #f00;
+///   .print {
+///     @include breakpoint.only('tab', true) {
+///       width: 50%;
+///     }
+///   }
+///
+///   .no-print {
+///     @include breakpoint.only('tab', false) {
+///       width: 50%;
 ///     }
 ///   }
 ///
 /// @example css - css
 ///   @media (768px <= width < 1200px) {
-///     .element {
+///     .tab {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media screen, print and (768px <= width < 1200px) {
-///     .mediatype {
-///       color: #f00;
+///   @media print, (768px <= width < 1200px) {
+///     .print {
+///       width: 50%;
 ///     }
 ///   }
 ///
-@mixin only($key, $type: null) {
+///   @media screen and (768px <= width < 1200px) {
+///     .no-print {
+///       width: 50%;
+///     }
+///   }
+///
+@mixin only($key, $print: null) {
   @if map.has-key(variables.$breakpoints, $key) {
     $min: functions.get-value($key);
     $next: functions.get-next-value($key);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min <= width < $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min <= width < $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min <= width < $next) {
           @content;
         }
       } @else {
@@ -255,15 +292,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($key, $type) {
+      @include max($key, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($key, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($key, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -278,7 +327,7 @@
 ///
 /// @param {string} $min-key-value - 適用したい最小の$breakpointsのキーまたは幅の値
 /// @param {string} $max-key-value - 適用したい最大の$breakpointsのキーまたは幅の値
-/// @param {string | null} $type [null] - メディアタイプ
+/// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
 ///   @use 'sass-utils/breakpoint' with (
@@ -291,52 +340,70 @@
 ///     )
 ///   );
 ///
-///   .element {
+///   .sm-lg {
 ///     @include breakpoint.between('sm', 'lg') {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   .element2 {
+///   .any {
 ///     @include breakpoint.between(1024px, 1440px) {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   .mediatype {
-///     @include breakpoint.between('sm', 'lg', 'screen, print') {
-///       color: #f00;
+///   .print {
+///     @include breakpoint.between('sm', 'lg', true) {
+///       width: 50%;
+///     }
+///   }
+///
+///   .no-print {
+///     @include breakpoint.between('sm', 'lg', false) {
+///       width: 50%;
 ///     }
 ///   }
 ///
 /// @example css - css
 ///   @media (480px <= width < 1200px) {
-///     .element {
+///     .sm-lg {
 ///       width: 50%;
 ///     }
 ///   }
 ///
 ///   @media (1024px <= width <= 1440px) {
-///     .element2 {
+///     .any {
 ///       width: 50%;
 ///     }
 ///   }
 ///
-///   @media screen, print and (480px <= width < 1200px) {
-///     .mediatype {
-///       color: #f00;
+///   @media print, (480px <= width < 1200px) {
+///     .print {
+///       width: 50%;
 ///     }
 ///   }
 ///
-@mixin between($min-key-value, $max-key-value, $type: null) {
+///   @media screen and (480px <= width < 1200px) {
+///     .no-print {
+///       width: 50%;
+///     }
+///   }
+///
+@mixin between($min-key-value, $max-key-value, $print: null) {
   // $min-key-valueと$max-key-valueがキーの場合
   @if map.has-key(variables.$breakpoints, $min-key-value) and map.has-key(variables.$breakpoints, $max-key-value) {
     $min: functions.get-value($min-key-value);
     $next: functions.get-next-value($max-key-value);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min <= width < $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min <= width < $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min <= width < $next) {
           @content;
         }
       } @else {
@@ -345,15 +412,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($max-key-value, $type) {
+      @include max($max-key-value, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($min-key-value, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($min-key-value, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -363,8 +442,14 @@
     $max: $max-key-value;
 
     @if unit.strip($min) != 0 {
-      @if $type {
-        @media #{$type} and ($min <= width <= $max) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min <= width <= $max) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min <= width <= $max) {
           @content;
         }
       } @else {
@@ -373,7 +458,7 @@
         }
       }
     } @else {
-      @include max($max, $type) {
+      @include max($max, $print) {
         @content;
       }
     }
@@ -385,8 +470,14 @@
     $next: functions.get-next-value($max-key-value);
 
     @if unit.strip($min) != 0 and $next {
-      @if $type {
-        @media #{$type} and ($min <= width < $next) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min <= width < $next) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min <= width < $next) {
           @content;
         }
       } @else {
@@ -395,15 +486,27 @@
         }
       }
     } @else if unit.strip($min) == 0 and $next {
-      @include max($max-key-value, $type) {
+      @include max($max-key-value, $print) {
         @content;
       }
     } @else if unit.strip($min) != 0 and $next == null {
-      @include min($min, $type) {
+      $print: functions.print($min, $print);
+
+      @include min($min, $print) {
         @content;
       }
     } @else {
-      @content;
+      @if $print == true {
+        @media print {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen {
+          @content;
+        }
+      } @else {
+        @content;
+      }
     }
   }
 
@@ -413,8 +516,14 @@
     $max: $max-key-value;
 
     @if unit.strip($min) != 0 {
-      @if $type {
-        @media #{$type} and ($min <= width <= $max) {
+      $print: functions.print($min, $print);
+
+      @if $print == true {
+        @media print, ($min <= width <= $max) {
+          @content;
+        }
+      } @else if $print == false {
+        @media screen and ($min <= width <= $max) {
           @content;
         }
       } @else {
@@ -423,7 +532,7 @@
         }
       }
     } @else {
-      @include max($max, $type) {
+      @include max($max, $print) {
         @content;
       }
     }

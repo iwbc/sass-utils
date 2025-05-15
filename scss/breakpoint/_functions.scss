@@ -38,3 +38,20 @@
     null
   );
 }
+
+///
+/// $printを幅と$print-min-widthを考慮した結果にして返す
+///
+/// @access private
+///
+/// @param {string} $width - 幅
+///
+/// @return {boolean | null} - 元の$printの値
+///
+@function print($width, $print) {
+  @return if(
+    $print == null and (variables.$print-min-width != null and variables.$print-min-width <= $width),
+    true,
+    $print
+  );
+}
