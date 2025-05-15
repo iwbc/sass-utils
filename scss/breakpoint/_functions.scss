@@ -50,7 +50,7 @@
 ///
 @function print($width, $print) {
   @return if(
-    $print == null and (variables.$print-min-width != null and variables.$print-min-width <= $width),
+    $print == null and (variables.$print-min-width != false and variables.$print-min-width <= $width),
     true,
     $print
   );
