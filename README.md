@@ -22,14 +22,8 @@ Import and use in any SCSS file.
 @use breakpoint.scss;
 
 .element {
-  @include breakpoint.max('tab') {
+  @include breakpoint.min('tab') {
     width: 50%;
-  }
-}
-
-.mediatype {
-  @include breakpoint.max('tab', 'screen, print') {
-    color: #f00;
   }
 }
 ```
