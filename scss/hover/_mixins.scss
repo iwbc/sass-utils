@@ -6,7 +6,7 @@
 /// hoverが利用できるデバイスかつマウスなど正確なポインターデバイスがある場合のみスタイルを適用するメディアクエリーを出力する
 ///
 /// @example scss - scss
-///   @use 'sass-utils/hover';
+///   @use '@iwbc/sass-utils/scss/hover';
 ///
 ///   a {
 ///     @include hover.any {
@@ -33,7 +33,7 @@
 /// hoverが利用できるデバイスかつマウスなど正確なポインターデバイスがある場合のみスタイルを適用するメディアクエリーと&:hoverセレクタを出力する
 ///
 /// @example scss - scss
-///   @use 'sass-utils/hover';
+///   @use '@iwbc/sass-utils/scss/hover';
 ///
 ///   a {
 ///     @include hover.this {

@@ -16,39 +16,39 @@
 
 $catch-errors: true;
 
-@include describe('breakpoint') {
-  @include describe('functions') {
-    @include describe('get()') {
-      @include it('指定したブレークポイントの値を返す') {
+@include test-module('breakpoint') {
+  @include test-module('functions') {
+    @include test-module('get()') {
+      @include test('指定したブレークポイントの値を返す') {
         @include assert-equal(functions.get-value('md'), 768px);
       }
 
-      @include it('指定したブレークポイントが存在しない場合はnullを返す') {
+      @include test('指定したブレークポイントが存在しない場合はnullを返す') {
         @include assert-equal(functions.get-value('not-exist'), null);
       }
     }
 
-    @include describe('get-next()') {
-      @include it('次のブレークポイントの値を返す') {
+    @include test-module('get-next()') {
+      @include test('次のブレークポイントの値を返す') {
         @include assert-equal(functions.get-next-value('md'), 960px);
       }
 
-      @include it('次のブレークポイントが存在しない場合はnullを返す') {
+      @include test('次のブレークポイントが存在しない場合はnullを返す') {
         @include assert-equal(functions.get-next-value('xl'), null);
       }
 
-      @include it('指定したブレークポイントが存在しない場合はnullを返す') {
+      @include test('指定したブレークポイントが存在しない場合はnullを返す') {
         @include assert-equal(functions.get-next-value('not-exist'), null);
       }
     }
   }
 
-  @include describe('mixins') {
+  @include test-module('mixins') {
     /**
      * min
      */
-    @include describe('min') {
-      @include it('ブレークポイントルールを返す / 引数: "xs"（0 <= width）') {
+    @include test-module('min') {
+      @include test('ブレークポイントルールを返す / 引数: "xs"（0 <= width）') {
         @include assert {
           @include output(false) {
             .element {
@@ -66,7 +66,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "sm"（480px <= width）') {
+      @include test('ブレークポイントルールを返す / 引数: "sm"（480px <= width）') {
         @include assert {
           @include output(false) {
             .element {
@@ -86,7 +86,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "md"（768px <= width）') {
+      @include test('ブレークポイントルールを返す / 引数: "md"（768px <= width）') {
         @include assert {
           @include output(false) {
             .element {
@@ -106,7 +106,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "xl"（1200px <= width）') {
+      @include test('ブレークポイントルールを返す / 引数: "xl"（1200px <= width）') {
         @include assert {
           @include output(false) {
             .element {
@@ -126,7 +126,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 1440px') {
+      @include test('ブレークポイントルールを返す / 引数: 1440px') {
         @include assert {
           @include output(false) {
             .element {
@@ -146,7 +146,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 0px') {
+      @include test('ブレークポイントルールを返す / 引数: 0px') {
         @include assert {
           @include output(false) {
             .element {
@@ -164,7 +164,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = true） / 引数: "sm", true') {
+      @include test('ブレークポイントルールを返す（$print = true） / 引数: "sm", true') {
         @include assert {
           @include output(false) {
             .element {
@@ -184,7 +184,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = true） / 引数: "xs", true') {
+      @include test('ブレークポイントルールを返す（$print = true） / 引数: "xs", true') {
         @include assert {
           @include output(false) {
             .element {
@@ -204,7 +204,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = false） / 引数: "md", false') {
+      @include test('ブレークポイントルールを返す（$print = false） / 引数: "md", false') {
         @include assert {
           @include output(false) {
             .element {
@@ -224,7 +224,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = false） / 引数: "xs", false') {
+      @include test('ブレークポイントルールを返す（$print = false） / 引数: "xs", false') {
         @include assert {
           @include output(false) {
             .element {
@@ -248,8 +248,8 @@ $catch-errors: true;
     /**
      * max
      */
-    @include describe('max') {
-      @include it('ブレークポイントルールを返す / 引数: "xl"（width <= ∞）') {
+    @include test-module('max') {
+      @include test('ブレークポイントルールを返す / 引数: "xl"（width <= ∞）') {
         @include assert {
           @include output(false) {
             .element {
@@ -267,7 +267,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "md"（width < 960px）') {
+      @include test('ブレークポイントルールを返す / 引数: "md"（width < 960px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -287,7 +287,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "xs"（width < 480px）') {
+      @include test('ブレークポイントルールを返す / 引数: "xs"（width < 480px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -307,7 +307,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 1440px）') {
+      @include test('ブレークポイントルールを返す / 引数: 1440px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -327,7 +327,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = true） / 引数: "md", true') {
+      @include test('ブレークポイントルールを返す（$print = true） / 引数: "md", true') {
         @include assert {
           @include output(false) {
             .element {
@@ -347,7 +347,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = false） / 引数: "md", false') {
+      @include test('ブレークポイントルールを返す（$print = false） / 引数: "md", false') {
         @include assert {
           @include output(false) {
             .element {
@@ -371,8 +371,8 @@ $catch-errors: true;
     /**
      * only
      */
-    @include describe('only') {
-      @include it('ブレークポイントルールを返す / 引数: "xs"（0 <= width < 480px）') {
+    @include test-module('only') {
+      @include test('ブレークポイントルールを返す / 引数: "xs"（0 <= width < 480px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -392,7 +392,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "md"（768px <= width < 960px）') {
+      @include test('ブレークポイントルールを返す / 引数: "md"（768px <= width < 960px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -412,7 +412,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "xl"（1200px <= width <= ∞）') {
+      @include test('ブレークポイントルールを返す / 引数: "xl"（1200px <= width <= ∞）') {
         @include assert {
           @include output(false) {
             .element {
@@ -432,7 +432,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = true） / 引数: "sm"（480px <= width < 768px）, true') {
+      @include test('ブレークポイントルールを返す（$print = true） / 引数: "sm"（480px <= width < 768px）, true') {
         @include assert {
           @include output(false) {
             .element {
@@ -452,7 +452,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = false） / 引数: "md"（768px <= width < 960px）, false') {
+      @include test('ブレークポイントルールを返す（$print = false） / 引数: "md"（768px <= width < 960px）, false') {
         @include assert {
           @include output(false) {
             .element {
@@ -476,8 +476,8 @@ $catch-errors: true;
     /**
      * between
      */
-    @include describe('between') {
-      @include it('ブレークポイントルールを返す / 引数: "xs", "md"（0 <= width < 960px）') {
+    @include test-module('between') {
+      @include test('ブレークポイントルールを返す / 引数: "xs", "md"（0 <= width < 960px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -497,7 +497,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "sm", "lg"（480px <= width < 1200px）') {
+      @include test('ブレークポイントルールを返す / 引数: "sm", "lg"（480px <= width < 1200px）') {
         @include assert {
           @include output(false) {
             .element {
@@ -517,7 +517,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "md", "xl"（768px <= width <= ∞）') {
+      @include test('ブレークポイントルールを返す / 引数: "md", "xl"（768px <= width <= ∞）') {
         @include assert {
           @include output(false) {
             .element {
@@ -537,7 +537,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 960px, 1280px') {
+      @include test('ブレークポイントルールを返す / 引数: 960px, 1280px') {
         @include assert {
           @include output(false) {
             .element {
@@ -557,7 +557,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: "sm", 1280px') {
+      @include test('ブレークポイントルールを返す / 引数: "sm", 1280px') {
         @include assert {
           @include output(false) {
             .element {
@@ -577,7 +577,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 600px, "lg"') {
+      @include test('ブレークポイントルールを返す / 引数: 600px, "lg"') {
         @include assert {
           @include output(false) {
             .element {
@@ -597,7 +597,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 0px, 1280px') {
+      @include test('ブレークポイントルールを返す / 引数: 0px, 1280px') {
         @include assert {
           @include output(false) {
             .element {
@@ -617,7 +617,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す / 引数: 0px, "lg"') {
+      @include test('ブレークポイントルールを返す / 引数: 0px, "lg"') {
         @include assert {
           @include output(false) {
             .element {
@@ -637,7 +637,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = true） / 引数: "sm", "lg", true') {
+      @include test('ブレークポイントルールを返す（$print = true） / 引数: "sm", "lg", true') {
         @include assert {
           @include output(false) {
             .element {
@@ -657,7 +657,7 @@ $catch-errors: true;
         }
       }
 
-      @include it('ブレークポイントルールを返す（$print = false） / 引数: "md", "xl", false') {
+      @include test('ブレークポイントルールを返す（$print = false） / 引数: "md", "xl", false') {
         @include assert {
           @include output(false) {
             .element {

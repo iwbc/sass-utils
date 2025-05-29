@@ -5,17 +5,18 @@
   )
 );
 @use '../scss/color/functions';
+@use '../scss/color/mixins';
 
 $catch-errors: true;
 
-@include describe('color') {
-  @include describe('functions') {
-    @include describe('get()') {
-      @include it('カラーコードを返す') {
+@include test-module('color') {
+  @include test-module('functions') {
+    @include test-module('get()') {
+      @include test('カラーコードを返す') {
         @include assert-equal(functions.get('black'), #000);
       }
 
-      @include it('エラー 未定義の色') {
+      @include test('エラー 未定義の色') {
         @include assert-equal(
           functions.get('unknown'),
           'ERROR [color.get()]: Invalid key, `unknown` is not defined. Choose one of black.'

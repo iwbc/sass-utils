@@ -3,45 +3,49 @@
 
 $catch-errors: true;
 
-@include describe('hover') {
-  @include describe('mixins') {
-    @include describe('any') {
-      @include it('hoverルールを返す') {
-        @include output(false) {
-          a {
-            @include mixins.any {
-              &:hover {
+@include test-module('hover') {
+  @include test-module('mixins') {
+    @include test-module('any') {
+      @include test('hoverルールを返す') {
+        @include assert {
+          @include output(false) {
+            a {
+              @include mixins.any {
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+
+          @include expect(false) {
+            @media (any-hover: hover) {
+              a:hover {
                 text-decoration: underline;
               }
             }
           }
         }
       }
-
-      @include expect(false) {
-        @media (hover) and (pointer) {
-          a:hover {
-            text-decoration: underline;
-          }
-        }
-      }
     }
 
-    @include describe('this') {
-      @include it('hoverルールを返す') {
-        @include output(false) {
-          a {
-            @include mixins.this {
-              text-decoration: underline;
+    @include test-module('this') {
+      @include test('hoverルールを返す') {
+        @include assert {
+          @include output(false) {
+            a {
+              @include mixins.this {
+                text-decoration: underline;
+              }
             }
           }
-        }
-      }
 
-      @include expect(false) {
-        @media (hover) and (pointer) {
-          a:hover {
-            text-decoration: underline;
+          @include expect(false) {
+            @media (any-hover: hover) {
+              a:hover {
+                text-decoration: underline;
+              }
+            }
           }
         }
       }

@@ -8,15 +8,15 @@
 
 $catch-errors: true;
 
-@include describe('z') {
-  @include describe('functions') {
-    @include describe('get()') {
-      @include it('z-index値を返す') {
+@include test-module('z') {
+  @include test-module('functions') {
+    @include test-module('get()') {
+      @include test('z-index値を返す') {
         @include assert-equal(functions.get('overlay'), 10000);
         @include assert-equal(functions.get('overlay', 1), 10001);
       }
 
-      @include it('エラー 未定義のキー') {
+      @include test('エラー 未定義のキー') {
         @include assert-equal(
           functions.get('unknown'),
           'ERROR [z.get()]: Invalid key, `unknown` is not defined. Choose one of overlay.'

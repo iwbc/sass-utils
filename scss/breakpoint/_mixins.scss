@@ -14,7 +14,7 @@
 /// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
-///   @use 'sass-utils/breakpoint' with (
+///   @use '@iwbc/sass-utils/scss/breakpoint' with (
 ///     $breakpoints: ('sp': 0, 'lgsp': 420px, 'tab': 768px),
 ///     $print-min-width: 768px
 ///   );
@@ -120,7 +120,7 @@
 /// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
-///   @use 'sass-utils/breakpoint' with (
+///   @use '@iwbc/sass-utils/scss/breakpoint' with (
 ///     $breakpoints: ('sp': 0, 'tab': 768px),
 ///     $print-min-width: 768px
 ///   );
@@ -229,7 +229,7 @@
 /// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
-///   @use 'sass-utils/breakpoint' with (
+///   @use '@iwbc/sass-utils/scss/breakpoint' with (
 ///     $breakpoints: ('sp': 0, 'tab': 768px, 'pc': 1200px)
 ///   );
 ///
@@ -330,7 +330,7 @@
 /// @param {boolean | null} $print [null] - 印刷時にスタイルを適用するかどうか true=適用する false=適用しない null=ブレークポイントや用紙サイズによる
 ///
 /// @example scss - scss
-///   @use 'sass-utils/breakpoint' with (
+///   @use '@iwbc/sass-utils/scss/breakpoint' with (
 ///     $breakpoints: $breakpoints: (
 ///       'xs': 0,
 ///       'sm': 480px,

@@ -8,14 +8,14 @@
 
 $catch-errors: true;
 
-@include describe('easing') {
-  @include describe('functions') {
-    @include describe('get()') {
-      @include it('easing functionを返す') {
+@include test-module('easing') {
+  @include test-module('functions') {
+    @include test-module('get()') {
+      @include test('easing functionを返す') {
         @include assert-equal(functions.get('ease-in-sine'), 'cubic-bezier(0.47, 0, 0.745, 0.715)');
       }
 
-      @include it('エラー 未定義のキー') {
+      @include test('エラー 未定義のキー') {
         @include assert-equal(
           functions.get('unknown'),
           'ERROR [easing.get()]: Invalid key, `unknown` is not defined. Choose one of ease-in-sine.'

@@ -6,16 +6,16 @@
 
 $catch-errors: true;
 
-@include describe('unit') {
-  @include describe('functions') {
-    @include describe('rem()') {
-      @include it('px値をrem値に変換して返す') {
+@include test-module('unit') {
+  @include test-module('functions') {
+    @include test-module('rem()') {
+      @include test('px値をrem値に変換して返す') {
         @include assert-equal(functions.rem(16px), 1rem);
         @include assert-equal(functions.rem(16px, 16px), 1rem);
         @include assert-equal(functions.rem(16, 16), 1rem);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.rem('string', 16px),
           'ERROR [unit.rem()]: Invalid `string` type. Choose a number type instead.'
@@ -27,13 +27,13 @@ $catch-errors: true;
       }
     }
 
-    @include describe('per()') {
-      @include it('px値を%値に変換して返す') {
+    @include test-module('per()') {
+      @include test('px値を%値に変換して返す') {
         @include assert-equal(functions.per(100px, 100px), 100%);
         @include assert-equal(functions.per(50, 100), 50%);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.per('string', 100px),
           'ERROR [unit.per()]: Invalid `string` type. Choose a number type instead.'
@@ -45,8 +45,8 @@ $catch-errors: true;
       }
     }
 
-    @include describe('vw()') {
-      @include it('px値を%値に変換して返す') {
+    @include test-module('vw()') {
+      @include test('px値を%値に変換して返す') {
         @include assert-equal(functions.vw(375px), 100lvw);
         @include assert-equal(functions.vw(100px, 100px), 100lvw);
         @include assert-equal(functions.vw(50, 100), 50lvw);
@@ -56,7 +56,7 @@ $catch-errors: true;
         @include assert-equal(functions.vw(100px, 100px, 'vw'), 100vw);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.vw('string', 100px),
           'ERROR [unit.vw()]: Invalid `string` type. Choose a number type instead.'
@@ -68,8 +68,8 @@ $catch-errors: true;
       }
     }
 
-    @include describe('vh()') {
-      @include it('px値を%値に変換して返す') {
+    @include test-module('vh()') {
+      @include test('px値を%値に変換して返す') {
         @include assert-equal(functions.vh(667px), 100lvh);
         @include assert-equal(functions.vh(100px, 100px), 100lvh);
         @include assert-equal(functions.vh(50, 100), 50lvh);
@@ -79,7 +79,7 @@ $catch-errors: true;
         @include assert-equal(functions.vh(100px, 100px, 'vh'), 100vh);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.vh('string', 100px),
           'ERROR [unit.vh()]: Invalid `string` type. Choose a number type instead.'
@@ -91,16 +91,16 @@ $catch-errors: true;
       }
     }
 
-    @include describe('strip()') {
-      @include it('単位付き数値から単位を取り除いた数値を返す') {
+    @include test-module('strip()') {
+      @include test('単位付き数値から単位を取り除いた数値を返す') {
         @include assert-equal(functions.strip(100px), 100);
       }
 
-      @include it('単位なし数値はそのまま返す') {
+      @include test('単位なし数値はそのまま返す') {
         @include assert-equal(functions.strip(100), 100);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.strip('string'),
           'ERROR [unit.strip()]: Invalid `string` type. Choose a number type instead.'
@@ -108,16 +108,16 @@ $catch-errors: true;
       }
     }
 
-    @include describe('abs-to-rel()') {
-      @include it('絶対単位の値から相対単位の値に変換して返す') {
+    @include test-module('abs-to-rel()') {
+      @include test('絶対単位の値から相対単位の値に変換して返す') {
         @include assert-equal(functions.abs-to-rel(10px, 100px), 0.1);
       }
 
-      @include it('絶対単位の値から相対単位の値に変換して返す（百分率）') {
+      @include test('絶対単位の値から相対単位の値に変換して返す（百分率）') {
         @include assert-equal(functions.abs-to-rel(10px, 100px, true), 10);
       }
 
-      @include it('数値以外を渡した場合はエラーを返す') {
+      @include test('数値以外を渡した場合はエラーを返す') {
         @include assert-equal(
           functions.abs-to-rel('string', 100px),
           'ERROR [unit.abs-to-rel()]: Invalid `string` type. Choose a number type instead.'

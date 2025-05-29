@@ -27,8 +27,8 @@
     "scss/**/*.scss"
   ],
   "dependencies": {
-    "sass": "^1.67.0",
-    "sass-true": "^7.0.0"
+    "sass-embedded": "^1.89.0",
+    "sass-true": "^8.1.0"
   },
   "devDependencies": {
     "glob": "^10.3.4",
