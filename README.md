@@ -1,14 +1,16 @@
 # sass-utils
 
-## Installation
+## インストール
+
+`sass-embedded`（または`sass`）v1.89.0以上と`sass-true`v8.1.0以上を別途インストールする必要があります。
 
 ```sh
-yarn add @iwbc/sass-utils
+npm i sass-embedded sass-true @iwbc/sass-utils
 ```
 
-## Usage
+## 使い方
 
-Create a wrapper SCSS file and initialize variables.
+ラッパーSCSSファイルを作成し、必要に応じて変数を設定します。
 
 ```scss:breakpoint.scss
 @forward @iwbc/sass-utils/scss/breakpoint with (
@@ -16,7 +18,7 @@ Create a wrapper SCSS file and initialize variables.
 );
 ```
 
-Import and use in any SCSS file.
+ラッパーSCSSをインポートして使用します。
 
 ```scss:page.scss
 @use breakpoint.scss;
@@ -28,4 +30,4 @@ Import and use in any SCSS file.
 }
 ```
 
-Please refer to the [documentation](https://iwbc.github.io/sass-utils/) for other usage methods.
+ほかの使い方は[ドキュメント](https://iwbc.github.io/sass-utils/)を参照してください。

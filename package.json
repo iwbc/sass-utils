@@ -7,7 +7,7 @@
     "url": "git+https://github.com/iwbc/sass-utils.git"
   },
   "homepage": "https://iwbc.github.io/sass-utils/",
-  "version": "1.0.1",
+  "version": "1.1.4",
   "engines": {
     "node": ">=18.17.0"
   },
@@ -26,10 +26,6 @@
   "files": [
     "scss/**/*.scss"
   ],
-  "dependencies": {
-    "sass-embedded": "^1.89.0",
-    "sass-true": "^8.1.0"
-  },
   "devDependencies": {
     "glob": "^10.3.4",
     "husky": "^8.0.0",
@@ -37,8 +33,26 @@
     "jest-environment-node-single-context": "^29.1.0",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
+    "sass-embedded": "^1.89.0",
+    "sass-true": "^8.1.0",
     "sassdoc": "^2.7.4",
     "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^11.0.0"
+  },
+  "peerDependencies": {
+    "sass": "^1.89.0",
+    "sass-embedded": "^1.89.0",
+    "sass-true": "^8.1.0"
+  },
+  "peerDependenciesMeta": {
+    "sass": {
+      "optional": true
+    },
+    "sass-embedded": {
+      "optional": true
+    },
+    "sass-true": {
+      "optional": true
+    }
   }
 }
