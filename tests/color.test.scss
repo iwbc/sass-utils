@@ -24,4 +24,25 @@ $catch-errors: true;
       }
     }
   }
+
+  @include test-module('mixins') {
+    @include test-module('cssvars') {
+      @include test('すべての色をCSS変数として出力する') {
+        @include assert {
+          @include output(false) {
+            :root {
+              @include mixins.cssvars;
+            }
+          }
+
+          @include expect(false) {
+            :root {
+              --color-black: #000;
+              --color-black-rgb: 0 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,38 @@
+////
+/// @group color
+////
+
+@use 'sass:color' as sass-color;
+@use './variables';
+
+///
+/// すべての色をCSS変数として出力する
+///
+/// @example scss - scss
+///   @use '@iwbc/sass-utils/scss/color' with (
+///     $colors: ('black': #000, 'white': #fff)
+///   )
+///
+///   :root {
+///      @include color.css-variables();
+///   }
+///
+/// @example css - css
+///   :root {
+///     --color-black: #000;
+///     --color-black-rgb: 0 0 0;
+///     --color-white: #fff;
+///     --color-white-rgb: 255 255 255;
+///   }
+///
+
+@mixin cssvars() {
+  @each $key, $value in variables.$colors {
+    $red: sass-color.channel($value, 'red');
+    $green: sass-color.channel($value, 'green');
+    $blue: sass-color.channel($value, 'blue');
+
+    --color-#{$key}: #{$value};
+    --color-#{$key}-rgb: #{$red} #{$green} #{$blue};
+  }
+}
