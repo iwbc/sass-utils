@@ -32,6 +32,8 @@
 ///
 /// hoverが利用できるデバイスかつマウスなど正確なポインターデバイスがある場合のみスタイルを適用するメディアクエリーと&:hoverセレクタを出力する
 ///
+/// @param {boolean} $focus [true] - a:focus-visibleセレクタも出力するかどうか
+///
 /// @example scss - scss
 ///   @use '@iwbc/sass-utils/scss/hover';
 ///
@@ -41,14 +43,34 @@
 ///     }
 ///   }
 ///
+///   a {
+///     @include hover.this(false) {
+///       text-decoration: underline;
+///     }
+///   }
+///
 /// @example css - css
+///   a:focus-visible {
+///     text-decoration: underline;
+///   }
 ///   @media (any-hover: hover) {
 ///     a:hover {
 ///       text-decoration: underline;
 ///     }
 ///   }
 ///
-@mixin this {
+///   @media (any-hover: hover) {
+///     a:hover {
+///       text-decoration: underline;
+///     }
+///   }
+@mixin this($focus: true) {
+  @if $focus {
+    &:focus-visible {
+      @content;
+    }
+  }
+
   @include any {
     &:hover {
       @content;

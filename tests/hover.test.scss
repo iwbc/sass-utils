@@ -30,11 +30,35 @@ $catch-errors: true;
     }
 
     @include test-module('this') {
-      @include test('hoverルールを返す') {
+      @include test('hoverルールを返す / with focus') {
         @include assert {
           @include output(false) {
             a {
               @include mixins.this {
+                text-decoration: underline;
+              }
+            }
+          }
+
+          @include expect(false) {
+            a:focus-visible {
+              text-decoration: underline;
+            }
+
+            @media (any-hover: hover) {
+              a:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      @include test('hoverルールを返す / without &:focus') {
+        @include assert {
+          @include output(false) {
+            a {
+              @include mixins.this(false) {
                 text-decoration: underline;
               }
             }
