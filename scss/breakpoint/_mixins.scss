@@ -8,6 +8,32 @@
 @use '../unit';
 
 ///
+/// すべてのブレークポイントをCSS変数として出力する
+///
+/// @example scss - scss
+///   @use '@iwbc/sass-utils/scss/breakpoint' with (
+///     $breakpoints: ('sp': 0, 'lgsp': 420px, 'tab': 768px),
+///   );
+///
+///   :root {
+///      @include breakpoint.css-variables;
+///   }
+///
+/// @example css - css
+///   :root {
+///     --breakpoint-sp: 0;
+///     --breakpoint-lgsp: 420px;
+///     --breakpoint-tab: 768px;
+///   }
+///
+
+@mixin cssvars() {
+  @each $key, $value in variables.$breakpoints {
+    --breakpoint-#{$key}: #{$value};
+  }
+}
+
+///
 /// 幅が指定したブレークポイント以上の場合にスタイルを適用する
 ///
 /// @param {string} $key-value - $breakpointsのキーまたは幅の値

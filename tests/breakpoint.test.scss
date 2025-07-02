@@ -45,6 +45,31 @@ $catch-errors: true;
 
   @include test-module('mixins') {
     /**
+     * vssvars
+     */
+    @include test-module('cssvars') {
+      @include test('すべてのブレークポイントをCSS変数として出力する') {
+        @include assert {
+          @include output(false) {
+            :root {
+              @include mixins.cssvars;
+            }
+          }
+
+          @include expect(false) {
+            :root {
+              --breakpoint-xs: 0;
+              --breakpoint-sm: 480px;
+              --breakpoint-md: 768px;
+              --breakpoint-lg: 960px;
+              --breakpoint-xl: 1200px;
+            }
+          }
+        }
+      }
+    }
+
+    /**
      * min
      */
     @include test-module('min') {
