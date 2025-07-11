@@ -15,7 +15,7 @@
     "lint": "stylelint '**/*.scss'",
     "test": "jest",
     "sassdoc": "sassdoc scss -c sassdoc.config.json",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{scss}": [
@@ -27,22 +27,21 @@
     "scss/**/*.scss"
   ],
   "devDependencies": {
-    "glob": "^10.3.4",
-    "husky": "^8.0.0",
-    "jest": "^29.7.0",
-    "jest-environment-node-single-context": "^29.1.0",
-    "lint-staged": "^14.0.1",
-    "prettier": "^3.0.3",
-    "sass-embedded": "^1.89.0",
-    "sass-true": "^8.1.0",
+    "glob": "^11.0.3",
+    "husky": "^9.1.7",
+    "jest": "^30.0.4",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "sass-embedded": "^1.89.2",
+    "sass-true": "^9.0.0",
     "sassdoc": "^2.7.4",
-    "stylelint": "^15.10.3",
-    "stylelint-config-standard-scss": "^11.0.0"
+    "stylelint": "^16.21.1",
+    "stylelint-config-standard-scss": "^15.0.1"
   },
   "peerDependencies": {
     "sass": "^1.89.0",
     "sass-embedded": "^1.89.0",
-    "sass-true": "^8.1.0"
+    "sass-true": "^9.0.0"
   },
   "peerDependenciesMeta": {
     "sass": {
