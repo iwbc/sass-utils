@@ -5,6 +5,7 @@
   )
 );
 @use '../scss/easing/functions';
+@use '../scss/easing/mixins';
 
 $catch-errors: true;
 
@@ -20,6 +21,26 @@ $catch-errors: true;
           functions.get('unknown'),
           'ERROR [easing.get()]: Invalid key, `unknown` is not defined. Choose one of ease-in-sine.'
         );
+      }
+    }
+  }
+
+  @include test-module('mixins') {
+    @include test-module('cssvars') {
+      @include test('すべてのイージングをCSS変数として出力する') {
+        @include assert {
+          @include output(false) {
+            :root {
+              @include mixins.cssvars;
+            }
+          }
+
+          @include expect(false) {
+            :root {
+              --ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+            }
+          }
+        }
       }
     }
   }
