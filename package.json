@@ -4,12 +4,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iwbc/sass-utils.git"
+    "url": "https://github.com/iwbc/sass-utils.git"
   },
   "homepage": "https://iwbc.github.io/sass-utils/",
   "version": "1.5.0",
   "engines": {
-    "node": ">=18.17.0"
+    "node": "^24.0.0"
   },
   "scripts": {
     "lint": "stylelint '**/*.scss'",
