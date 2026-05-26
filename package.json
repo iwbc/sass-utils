@@ -1,31 +1,7 @@
 {
   "name": "@iwbc/sass-utils",
-  "author": "iwbc",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/iwbc/sass-utils.git"
-  },
-  "homepage": "https://iwbc.github.io/sass-utils/",
   "version": "1.5.0",
-  "engines": {
-    "node": "^24.0.0"
-  },
-  "scripts": {
-    "lint": "stylelint '**/*.scss'",
-    "test": "jest",
-    "sassdoc": "sassdoc scss -c sassdoc.config.json",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{scss}": [
-      "stylelint && jest"
-    ]
-  },
-  "main": "index.scss",
-  "files": [
-    "scss/**/*.scss"
-  ],
+  "author": "iwbc",
   "devDependencies": {
     "glob": "^11.0.3",
     "husky": "^9.1.7",
@@ -38,6 +14,23 @@
     "stylelint": "^16.21.1",
     "stylelint-config-standard-scss": "^15.0.1"
   },
+  "engines": {
+    "node": "^24.0.0",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm"
+  },
+  "files": [
+    "scss/**/*.scss"
+  ],
+  "homepage": "https://iwbc.github.io/sass-utils/",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{scss}": [
+      "stylelint && jest"
+    ]
+  },
+  "main": "index.scss",
+  "packageManager": "pnpm@11.3.0",
   "peerDependencies": {
     "sass": "^1.89.0",
     "sass-embedded": "^1.89.0",
@@ -53,5 +46,15 @@
     "sass-true": {
       "optional": true
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwbc/sass-utils.git"
+  },
+  "scripts": {
+    "lint": "stylelint '**/*.scss'",
+    "prepare": "husky",
+    "sassdoc": "sassdoc scss -c sassdoc.config.json",
+    "test": "jest"
   }
 }

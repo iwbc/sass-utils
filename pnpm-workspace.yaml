@@ -1,0 +1,10 @@
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  unrs-resolver: true
+minimumReleaseAge: 10080 # 7 days
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 129600 # 90 days
+registries:
+  default: https://npm.flatt.tech
+engineStrict: true
