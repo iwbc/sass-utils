@@ -4,8 +4,6 @@
 );
 @use '../scss/unit/functions';
 
-$catch-errors: true;
-
 @include test-module('unit') {
   @include test-module('functions') {
     @include test-module('rem()') {

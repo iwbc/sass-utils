@@ -1,6 +1,6 @@
 {
   "name": "@iwbc/sass-utils",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "author": "iwbc",
   "devDependencies": {
     "glob": "^13.0.6",
@@ -34,17 +34,6 @@
   "peerDependencies": {
     "sass-embedded": "^1.99.0",
     "sass-true": "^10.1.0"
-  },
-  "peerDependenciesMeta": {
-    "sass": {
-      "optional": true
-    },
-    "sass-embedded": {
-      "optional": true
-    },
-    "sass-true": {
-      "optional": true
-    }
   },
   "repository": {
     "type": "git",

@@ -14,8 +14,6 @@
 @use '../scss/breakpoint/functions';
 @use '../scss/breakpoint/mixins';
 
-$catch-errors: true;
-
 @include test-module('breakpoint') {
   @include test-module('functions') {
     @include test-module('get()') {

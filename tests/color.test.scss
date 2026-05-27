@@ -7,8 +7,6 @@
 @use '../scss/color/functions';
 @use '../scss/color/mixins';
 
-$catch-errors: true;
-
 @include test-module('color') {
   @include test-module('functions') {
     @include test-module('get()') {

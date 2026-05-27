@@ -1,8 +1,6 @@
 @use 'true' as *;
 @use '../scss/hover/mixins';
 
-$catch-errors: true;
-
 @include test-module('hover') {
   @include test-module('mixins') {
     @include test-module('any') {

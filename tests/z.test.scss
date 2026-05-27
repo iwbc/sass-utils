@@ -6,8 +6,6 @@
 );
 @use '../scss/z/functions';
 
-$catch-errors: true;
-
 @include test-module('z') {
   @include test-module('functions') {
     @include test-module('get()') {

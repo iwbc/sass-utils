@@ -4,7 +4,7 @@
 
 @use 'sass:math';
 @use 'sass:meta';
-@use 'throw';
+@use 'sass-true';
 @use './variables';
 
 ///
@@ -17,9 +17,13 @@
 ///
 @function rem($px, $basis: variables.$base-font-size) {
   @if meta.type-of($px) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.rem()');
+    @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.rem()', true);
   } @else if meta.type-of($basis) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.rem()');
+    @return sass-true.error(
+      'Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.',
+      'unit.rem()',
+      true
+    );
   }
 
   @return abs-to-rel($px, $basis) * 1rem;
@@ -35,9 +39,13 @@
 ///
 @function per($px, $basis) {
   @if meta.type-of($px) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.per()');
+    @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.per()', true);
   } @else if meta.type-of($basis) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.per()');
+    @return sass-true.error(
+      'Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.',
+      'unit.per()',
+      true
+    );
   }
 
   @return math.percentage(abs-to-rel($px, $basis));
@@ -53,9 +61,9 @@
 ///
 @function vw($px, $basis: variables.$base-width, $unit: 'lvw') {
   @if meta.type-of($px) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()');
+    @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()', true);
   } @else if meta.type-of($basis) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vw()');
+    @return sass-true.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vw()', true);
   }
 
   @if $unit == 'lvw' {
@@ -67,7 +75,7 @@
   } @else if $unit == 'vw' {
     @return abs-to-rel($px, $basis, true) * 1vw;
   } @else {
-    @return throw.error('Invalid `#{$unit}` unit. Choose a vw, svw, lvw, or dvw instead.', 'unit.vw()');
+    @return sass-true.error('Invalid `#{$unit}` unit. Choose a vw, svw, lvw, or dvw instead.', 'unit.vw()', true);
   }
 }
 
@@ -81,9 +89,9 @@
 ///
 @function vh($px, $basis: variables.$base-height, $unit: 'lvh') {
   @if meta.type-of($px) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()');
+    @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()', true);
   } @else if meta.type-of($basis) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vh()');
+    @return sass-true.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.vh()', true);
   }
 
   @if $unit == 'lvh' {
@@ -95,7 +103,7 @@
   } @else if $unit == 'vh' {
     @return abs-to-rel($px, $basis, true) * 1vh;
   } @else {
-    @return throw.error('Invalid `#{$unit}` unit. Choose a vh, svh, lvh, or dvh instead.', 'unit.vh()');
+    @return sass-true.error('Invalid `#{$unit}` unit. Choose a vh, svh, lvh, or dvh instead.', 'unit.vh()', true);
   }
 }
 
@@ -108,7 +116,11 @@
 ///
 @function strip($value) {
   @if meta.type-of($value) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($value)}` type. Choose a number type instead.', 'unit.strip()');
+    @return sass-true.error(
+      'Invalid `#{meta.type-of($value)}` type. Choose a number type instead.',
+      'unit.strip()',
+      true
+    );
   } @else if meta.type-of($value) == 'number' and not math.is-unitless($value) {
     @return math.div($value, ($value * 0 + 1));
   }
@@ -127,9 +139,17 @@
 ///
 @function abs-to-rel($abs, $basis, $per: false) {
   @if meta.type-of($abs) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($abs)}` type. Choose a number type instead.', 'unit.abs-to-rel()');
+    @return sass-true.error(
+      'Invalid `#{meta.type-of($abs)}` type. Choose a number type instead.',
+      'unit.abs-to-rel()',
+      true
+    );
   } @else if meta.type-of($basis) != 'number' {
-    @return throw.error('Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.', 'unit.abs-to-rel()');
+    @return sass-true.error(
+      'Invalid `#{meta.type-of($basis)}` type. Choose a number type instead.',
+      'unit.abs-to-rel()',
+      true
+    );
   }
 
   $abs: strip($abs);

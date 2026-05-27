@@ -7,8 +7,6 @@
 @use '../scss/easing/functions';
 @use '../scss/easing/mixins';
 
-$catch-errors: true;
-
 @include test-module('easing') {
   @include test-module('functions') {
     @include test-module('get()') {
