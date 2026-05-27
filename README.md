@@ -2,7 +2,7 @@
 
 ## インストール
 
-`sass-embedded`（または`sass`）v1.89.0以上と`sass-true`v8.1.0以上を別途インストールする必要があります。
+`sass-embedded`v1.99.0以上と`sass-true`v10.1.0以上を別途インストールする必要があります。
 
 ```sh
 npm i sass-embedded sass-true @iwbc/sass-utils

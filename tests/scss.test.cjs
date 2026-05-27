@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const sassTrue = require('sass-true');
 const glob = require('glob');
 

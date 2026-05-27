@@ -3,7 +3,7 @@
 ////
 
 @use 'sass:map';
-@use 'sass-true';
+@use 'throw';
 @use './variables';
 
 ///
@@ -15,7 +15,7 @@
 ///
 @function get($key) {
   @if not map.has-key(variables.$colors, $key) {
-    @return sass-true.error(
+    @return throw.error(
       'Invalid key, `#{$key}` is not defined. Choose one of #{map.keys(variables.$colors)}.',
       'color.get()'
     );
