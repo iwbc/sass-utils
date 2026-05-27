@@ -33,9 +33,7 @@
   $index: list.index($keys, $key);
 
   @return if(
-    $index != null and $index < list.length($keys),
-    map.get(variables.$breakpoints, list.nth($keys, $index + 1)),
-    null
+    sass($index != null and $index < list.length($keys)): map.get(variables.$breakpoints, list.nth($keys, $index + 1))
   );
 }
 
@@ -50,8 +48,7 @@
 ///
 @function print($width, $print) {
   @return if(
-    $print == null and (variables.$print-min-width != false and variables.$print-min-width <= $width),
-    true,
-    $print
+    sass($print == null and (variables.$print-min-width != false and variables.$print-min-width <= $width)): true;
+      else: $print
   );
 }

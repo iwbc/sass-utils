@@ -107,7 +107,7 @@
 ///   }
 ///
 @mixin min($key-value, $print: null) {
-  $min: if(map.has-key(variables.$breakpoints, $key-value), functions.get-value($key-value), $key-value);
+  $min: if(sass(map.has-key(variables.$breakpoints, $key-value)): functions.get-value($key-value) ; else: $key-value);
   $print: functions.print($min, $print);
 
   @if unit.strip($min) != 0 {
