@@ -21,6 +21,21 @@
         );
       }
     }
+
+    @include test-module('rgba()') {
+      @include test('color-mix CSS関数を返す（$hex: #000, $alpha: 0.5）') {
+        @include assert-equal(functions.rgba(#000, 0.5), 'color-mix(in srgb, #000, 50%, transparent)');
+      }
+    }
+
+    @include test-module('rgba()') {
+      @include test('color-mix CSS関数を返す（$hex: var(--color-black), $alpha: 50%）') {
+        @include assert-equal(
+          functions.rgba(var(--color-black), 50%),
+          'color-mix(in srgb, var(--color-black), 50%, transparent)'
+        );
+      }
+    }
   }
 
   @include test-module('mixins') {
