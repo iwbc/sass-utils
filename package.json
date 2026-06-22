@@ -11,6 +11,7 @@
     "sass-embedded": "^1.99.0",
     "sass-true": "^10.1.0",
     "sassdoc": "^2.7.4",
+    "standard-version": "^9.5.0",
     "stylelint": "^17.11.1",
     "stylelint-config-standard-scss": "^17.0.0"
   },
@@ -25,7 +26,7 @@
   "homepage": "https://iwbc.github.io/sass-utils/",
   "license": "MIT",
   "lint-staged": {
-    "*.{scss}": [
+    "*.scss": [
       "stylelint && jest"
     ]
   },
@@ -43,6 +44,8 @@
     "lint": "stylelint '**/*.scss'",
     "prepare": "husky",
     "sassdoc": "sassdoc scss -c sassdoc.config.json",
-    "test": "jest"
+    "test": "jest",
+    "lint-staged": "lint-staged",
+    "release": "standard-version"
   }
 }
