@@ -33,12 +33,10 @@
 /// @param {color} $hex - 16進数カラーコード
 /// @param {number | string} $alpha - 不透明度（0〜1の数値または%表記の文字列）
 ///
-/// @return {string} = color-mix CSS関数
+/// @return {string} - color-mix CSS関数
 ///
 
 @function rgba($hex, $alpha) {
-  @debug math.unit($alpha);
-
   $_alpha: if(sass(math.unit($alpha) == '%'): $alpha; else: math.percentage($alpha));
 
   @return color-mix(in srgb, $hex, $_alpha, transparent);
