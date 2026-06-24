@@ -1,6 +1,6 @@
 {
   "name": "@iwbc/sass-utils",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "author": "iwbc",
   "devDependencies": {
     "glob": "^13.0.6",
