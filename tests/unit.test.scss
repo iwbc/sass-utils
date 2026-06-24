@@ -45,9 +45,9 @@
 
     @include test-module('vw()') {
       @include test('px値を%値に変換して返す') {
-        @include assert-equal(functions.vw(375px), 100lvw);
-        @include assert-equal(functions.vw(100px, 100px), 100lvw);
-        @include assert-equal(functions.vw(50, 100), 50lvw);
+        @include assert-equal(functions.vw(375px), 100svw);
+        @include assert-equal(functions.vw(100px, 100px), 100svw);
+        @include assert-equal(functions.vw(50, 100), 50svw);
         @include assert-equal(functions.vw(100px, 100px, 'svw'), 100svw);
         @include assert-equal(functions.vw(100px, 100px, 'lvw'), 100lvw);
         @include assert-equal(functions.vw(100px, 100px, 'dvw'), 100dvw);
@@ -68,9 +68,9 @@
 
     @include test-module('vh()') {
       @include test('px値を%値に変換して返す') {
-        @include assert-equal(functions.vh(667px), 100lvh);
-        @include assert-equal(functions.vh(100px, 100px), 100lvh);
-        @include assert-equal(functions.vh(50, 100), 50lvh);
+        @include assert-equal(functions.vh(667px), 100svh);
+        @include assert-equal(functions.vh(100px, 100px), 100svh);
+        @include assert-equal(functions.vh(50, 100), 50svh);
         @include assert-equal(functions.vh(100px, 100px, 'svh'), 100svh);
         @include assert-equal(functions.vh(100px, 100px, 'lvh'), 100lvh);
         @include assert-equal(functions.vh(100px, 100px, 'dvh'), 100dvh);

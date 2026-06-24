@@ -55,11 +55,11 @@
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
 /// @param {number} $basis [$base-width] - 変換基準値 (単位は省略可)
-/// @param {string} $unit ['lvw'] - 単位（vw, svw, lvw, dvw）
+/// @param {string} $unit ['svw'] - 単位（vw, svw, lvw, dvw）
 ///
-/// @return {number} - vw値
+/// @return {number} - vw, svw, lvw, dvw 値
 ///
-@function vw($px, $basis: variables.$base-width, $unit: 'lvw') {
+@function vw($px, $basis: variables.$base-width, $unit: 'svw') {
   @if meta.type-of($px) != 'number' {
     @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vw()', true);
   } @else if meta.type-of($basis) != 'number' {
@@ -83,11 +83,11 @@
 ///
 /// @param {number} $px - 変換対象値 (単位は省略可)
 /// @param {number} $basis [$base-height] - 変換基準値 (単位は省略可)
-/// @param {string} $unit ['lvh'] - 単位（vh, svh, lvh, dvh）
+/// @param {string} $unit ['svh'] - 単位（vh, svh, lvh, dvh）
 ///
-/// @return {number} - vh値
+/// @return {number} - vh, svh, lvh, dvh 値
 ///
-@function vh($px, $basis: variables.$base-height, $unit: 'lvh') {
+@function vh($px, $basis: variables.$base-height, $unit: 'svh') {
   @if meta.type-of($px) != 'number' {
     @return sass-true.error('Invalid `#{meta.type-of($px)}` type. Choose a number type instead.', 'unit.vh()', true);
   } @else if meta.type-of($basis) != 'number' {
