@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/iwbc/sass-utils/compare/v3.0.0...v3.0.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* color.rgbaの出力構文ミス修正 ([00dc1af](https://github.com/iwbc/sass-utils/commit/00dc1af6406af14a1649448ad74907b5fc30c2c8))
+
 ## [3.0.0](https://github.com/iwbc/sass-utils/compare/v2.1.1...v3.0.0) (2026-06-24)
 
 
