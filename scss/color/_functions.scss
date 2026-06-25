@@ -39,5 +39,5 @@
 @function rgba($hex, $alpha) {
   $_alpha: if(sass(math.unit($alpha) == '%'): $alpha; else: math.percentage($alpha));
 
-  @return color-mix(in srgb, $hex, $_alpha, transparent);
+  @return color-mix(in srgb, $hex $_alpha, transparent);
 }
